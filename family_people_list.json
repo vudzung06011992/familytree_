@@ -13,11 +13,11 @@
       "mother": "7"
     },
     "data": {
-      "first name": "Vũ",
-      "middle name": "Văn",
-      "last name": "Nghĩa aaaaaaaaaaaaaaaaaaaaaaa",
+      "first name": " ",
+      "middle name": " ",
+      "last name": "Nghia",
       "alias": "donaldgarcia",
-      "gender": "M",
+      "gender": "Nam",
       "birthday": "1947",
       "avatar": " ",
       "nationality": "Việt Nam",
@@ -36,7 +36,7 @@
       "phone": "559-407-8161",
       "email": "barbara10@hotmail.com",
       "full name": "Hill Angel Mark",
-      "last update": "15/07/2025"
+      "last update": "2025-07-15 00:00:00"
     }
   },
   {
@@ -53,9 +53,9 @@
     "data": {
       "first name": " ",
       "middle name": " ",
-      "last name": "Bùi Thị Bích Phượng abc xyz",
+      "last name": "Phuong",
       "alias": "michellejames",
-      "gender": "F",
+      "gender": "Nam",
       "birthday": "1956",
       "avatar": " ",
       "nationality": "Việt Nam",
@@ -74,7 +74,7 @@
       "phone": "953.767.2423",
       "email": "zhurst@yahoo.com",
       "full name": "Miller Keith Darren",
-      "last update": "15/07/2025"
+      "last update": "2025-07-15 00:00:00"
     }
   },
   {
@@ -111,7 +111,7 @@
       "phone": "+1-893-252-8809x5701",
       "email": "john39@gmail.com",
       "full name": "Hicks Whitney Daniel",
-      "last update": "15/07/2025"
+      "last update": "2025-07-15 00:00:00"
     }
   },
   {
@@ -133,7 +133,7 @@
       "place of birth": "New Karina",
       "place of residence": "5787 John Circles Suite 098, New Jeffrey, VT 83220",
       "is dead": true,
-      "date of death": "16/07/2007",
+      "date of death": "2007-07-16",
       "place of death": "North Rebecca",
       "ethnicity": "Tày",
       "educational level": "Thạc sĩ",
@@ -141,10 +141,10 @@
       "occupation": "Kỹ sư",
       "career": "Đã công tác tại Jones-Young trong 5 năm",
       "characteristics": "relationship - mention - difficult",
-      "phone": "-7346",
+      "phone": -7346,
       "email": "rodney70@hotmail.com",
       "full name": "Jones Todd Bradley",
-      "last update": "15/07/2025"
+      "last update": "2025-07-15 00:00:00"
     }
   },
   {
@@ -167,7 +167,7 @@
       "place of birth": "Whitemouth",
       "place of residence": "8108 Tanya Terrace, East Richard, IL 53066",
       "is dead": true,
-      "date of death": "13/07/2007",
+      "date of death": "2007-07-13",
       "place of death": "South Aaron",
       "ethnicity": "Thái",
       "educational level": "THPT",
@@ -178,7 +178,7 @@
       "phone": "001-872-343-0980x500",
       "email": "brianromero@gmail.com",
       "full name": "Brown Debbie Matthew",
-      "last update": "15/07/2025"
+      "last update": "2025-07-15 00:00:00"
     }
   },
   {
@@ -212,10 +212,10 @@
       "occupation": "Công an",
       "career": "Đã công tác tại Suarez LLC trong 5 năm",
       "characteristics": "feel - coach - left",
-      "phone": "-1822",
+      "phone": -1822,
       "email": "josephjacobs@cooper.net",
       "full name": "Hensley Carlos Andrea",
-      "last update": "15/07/2025"
+      "last update": "2025-07-15 00:00:00"
     }
   },
   {
@@ -241,7 +241,7 @@
       "place of birth": "Lake Scott",
       "place of residence": "12805 Russell Canyon, Michaelton, MI 28036",
       "is dead": true,
-      "date of death": "10/1/2014",
+      "date of death": "2014-10-01",
       "place of death": "West Kimberlychester",
       "ethnicity": "Kinh",
       "educational level": "Thạc sĩ",
@@ -252,49 +252,14 @@
       "phone": "(602)563-4216",
       "email": "dwalker@torres-pope.com",
       "full name": "Mathis Rebecca Katherine",
-      "last update": "15/07/2025"
+      "last update": "2025-07-15 00:00:00"
     }
   },
-  {
-    "id": "5",
-    "rels": {
-      "spouses": [
-        "3"
-      ]
-    },
-    "data": {
-      "first name": " ",
-      "middle name": " ",
-      "last name": "Mai",
-      "alias": "lauren13",
-      "gender": "Nam",
-      "birthday": "1953",
-      "avatar": " ",
-      "nationality": "Việt Nam",
-      "place of origin": "East Amanda",
-      "place of birth": "Whitemouth",
-      "place of residence": "8108 Tanya Terrace, East Richard, IL 53066",
-      "is dead": true,
-      "date of death": "13/07/2007",
-      "place of death": "South Aaron",
-      "ethnicity": "Thái",
-      "educational level": "THPT",
-      "is cpv member": false,
-      "occupation": "Giáo viên",
-      "career": "Đã công tác tại Baker-Bowers trong 5 năm",
-      "characteristics": "look - feeling - land",
-      "phone": "001-872-343-0980x500",
-      "email": "brianromero@gmail.com",
-      "full name": "Brown Debbie Matthew",
-      "last update": "15/07/2025"
-    }
-  },
-
   {
     "id": "8",
     "rels": {
       "spouses": [
-        "5"
+        "3"
       ]
     },
     "data": {
@@ -310,7 +275,7 @@
       "place of birth": "Whitemouth",
       "place of residence": "8108 Tanya Terrace, East Richard, IL 53066",
       "is dead": true,
-      "date of death": "13/07/2007",
+      "date of death": "2007-07-13",
       "place of death": "South Aaron",
       "ethnicity": "Thái",
       "educational level": "THPT",
@@ -321,8 +286,7 @@
       "phone": "001-872-343-0980x500",
       "email": "brianromero@gmail.com",
       "full name": "Brown Debbie Matthew",
-      "last update": "15/07/2025"
+      "last update": "2025-07-15 00:00:00"
     }
   }
-
 ]

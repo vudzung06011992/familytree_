@@ -18,7 +18,7 @@
     </button>
 
     <button id="loadBtn" style="padding: 10px 20px; background: #007cba; color: white; border: none; cursor: pointer;">
-      Load Family Tree
+      Hiển thị cây gia phả
     </button>
 
     <!-- Input file bị ẩn -->
@@ -32,7 +32,7 @@
      style="width:100%;height:100%;
             position:absolute;top:0;left:0;
             margin:0;padding:0;
-            background-image: url('grass_and_sky_514911.jpg');
+            background-image: url('beach.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -70,8 +70,6 @@
           body: formData
         });
 
-        status.innerText = "⚙️ Đang xử lý dữ liệu...";
-
         // Gọi API để lấy dữ liệu cây đã xử lý
         const response = await fetch('http://127.0.0.1:5000/api/family');
         if (!response.ok) throw new Error("Lỗi khi lấy dữ liệu");
@@ -86,7 +84,6 @@
         const timestamp = Date.now();
         await import(`./index.js?t=${timestamp}`);
 
-        status.innerText = "✅ Hiển thị cây gia phả thành công!";
       } catch (error) {
         console.error('❌ Lỗi:', error);
         alert('Đã xảy ra lỗi khi xử lý cây.');

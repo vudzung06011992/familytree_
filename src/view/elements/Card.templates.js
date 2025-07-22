@@ -7,26 +7,29 @@ export function CardBody({d,card_dim,card_display}) {
   `)
   }
 }
-
-export function CardText({d, card_dim, card_display}) {
+  
+export function CardText({ d, card_dim, card_display }) {
   return {
     template: (`
       <g>
         <g class="card-text" clip-path="url(#card_text_clip)">
           <g transform="translate(${card_dim.w / 2}, ${card_dim.text_y})">
-            <text text-anchor="middle">
-              ${Array.isArray(card_display) 
-                ? card_display.map(cd => `<tspan dy="14">${cd(d.data)}</tspan>`).join('\n')
-                : `<tspan dy="14">${card_display(d.data)}</tspan>`}
+            <text text-anchor="middle" dominant-baseline="hanging">
+              ${
+                Array.isArray(card_display)
+                  ? card_display.map((cd, i) =>
+                      `<tspan x="0" dy="${i === 0 ? 0 : 25}">${cd(d.data)}</tspan>`
+                    ).join('\n')
+                  : `<tspan x="0" dy="0">${card_display(d.data)}</tspan>`
+              }
             </text>
           </g>
         </g>
-        <rect width="${card_dim.w - 10}" height="${card_dim.h}" style="mask: url(#fade)" class="text-overflow-mask" /> 
+        <rect width="${card_dim.w - 10}" height="${card_dim.h}" style="mask: url(#fade)" class="text-overflow-mask" />
       </g>
     `)
-  }
+  };
 }
-  
 
 export function CardBodyAddNew({d,card_dim,card_add,label}) {
   return {template: (`

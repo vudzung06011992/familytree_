@@ -117,7 +117,7 @@ def get_family_data():
     people_cleaned = clean_nans(people)
 
     # Ghi ra file
-    with open("D:/FamilyTree/f5/family-chart-master/examples/1-basic-tree/family_people_list.json", "w", encoding="utf-8") as f:
+    with open(r"D:\FamilyTree\f6\family-chart-master/family_people_list.json", "w", encoding="utf-8") as f:
         json.dump(people_cleaned, f, indent=2, ensure_ascii=False)
     print(people_cleaned)
     print("✅ Đã tạo xong file family_people_list.json với NaN → ' '")
