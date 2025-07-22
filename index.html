@@ -1,16 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>basic-tree-1</title>
   <link rel="shortcut icon" type="image/svg" href="./examples/logo.svg">
   <script src="https://unpkg.com/d3@6"></script>
   <link rel="stylesheet" href="./src/styles/family-chart.css">
-
 </head>
 <body>
-<div id="FamilyChart" class="f3" style="width:100%;height:900px;margin:auto;background-color:rgb(33,33,33);color:#fff;"></div>
-<script src="./index.js" type="module"></script>
+  
+  <!-- Khu vực chọn file và nút upload -->
+  <div style="padding: 20px; background: #222; text-align: center;">
+    <!-- Nút chọn file giống với nút Load -->
+    <button id="selectFileBtn" style="padding: 10px 20px; background: #007cba; color: white; border: none; cursor: pointer; margin-right: 10px;">
+      Chọn File Excel
+    </button>
+
+    <button id="loadBtn" style="padding: 10px 20px; background: #007cba; color: white; border: none; cursor: pointer;">
+      Load Family Tree
+    </button>
+
+    <!-- Input file bị ẩn -->
+    <input type="file" id="fileInput" accept=".xlsx,.xlsm" style="display: none;">
+
+    <p id="status" style="color: #fff; margin-top: 10px;"></p>
+  </div>
+
+  <!-- Vùng hiển thị cây -->
+  <div id="FamilyChart" class="f3"
+     style="width:100%;height:100%;
+            position:absolute;top:0;left:0;
+            margin:0;padding:0;
+            background-image: url('grass_and_sky_514911.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color:#fff;
+            z-index: -1;">
+  </div>
+
+  <!-- Script xử lý upload và vẽ lại cây -->
+  <script type="module">
+    const status = document.getElementById('status');
+    const loadBtn = document.getElementById('loadBtn');
+    const selectFileBtn = document.getElementById('selectFileBtn');
+    const fileInput = document.getElementById('fileInput');
+
+    // Gán sự kiện click cho nút chọn file
+    selectFileBtn.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    loadBtn.addEventListener('click', async () => {
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('Vui lòng chọn file Excel');
+        return;
+      }
+
+      status.innerText = "📤 Đang upload file...";
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        // Upload file Excel lên server
+        await fetch('http://127.0.0.1:5000/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        status.innerText = "⚙️ Đang xử lý dữ liệu...";
+
+        // Gọi API để lấy dữ liệu cây đã xử lý
+        const response = await fetch('http://127.0.0.1:5000/api/family');
+        if (!response.ok) throw new Error("Lỗi khi lấy dữ liệu");
+
+        const data = await response.json();
+        window.familyData = data;
+
+        // Xoá cây hiện tại
+        document.getElementById('FamilyChart').innerHTML = '';
+
+        // Tải lại index.js với timestamp để đảm bảo không bị cache
+        const timestamp = Date.now();
+        await import(`./index.js?t=${timestamp}`);
+
+        status.innerText = "✅ Hiển thị cây gia phả thành công!";
+      } catch (error) {
+        console.error('❌ Lỗi:', error);
+        alert('Đã xảy ra lỗi khi xử lý cây.');
+        status.innerText = "❌ Lỗi khi xử lý dữ liệu.";
+      }
+    });
+  </script>
 </body>
 </html>
