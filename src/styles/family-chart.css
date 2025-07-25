@@ -1,3 +1,4 @@
+
 .f3 {
   --female-color: #f8c6d8;        /* Hồng nhẹ */
   --male-color: #a3d5f7;          /* Xanh da trời */
@@ -5,7 +6,7 @@
   --background-color: #f5f5f5;    /* Nền xám nhạt nhẹ */
   --text-color: #000000;          /* Đen */
 
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 
@@ -26,23 +27,23 @@
 .f3 rect.card-female, .f3 .card-female .card-body-rect, .f3 .card-female .text-overflow-mask {
   fill: var(--female-color);
   stroke:  #fff;
-  stroke-width: 6px;
+  stroke-width: 0px;
 }
 .f3 rect.card-male, .f3 .card-male .card-body-rect, .f3 .card-male .text-overflow-mask {
   fill: var(--male-color);
   stroke:  #fff;
-  stroke-width: 6px;
+  stroke-width: 0px;
 }
 
 .f3 rect.card-genderless, .f3 .card-genderless .card-body-rect, .f3 .card-genderless .text-overflow-mask {
   fill: var(--genderless-color);
   stroke:  #fff;
-  stroke-width: 60px;
+  stroke-width: 0px;
 }
 
 .f3 rect.card-male, .f3 rect.card-female {
   stroke:  #fff;
-  stroke-width: 2px;
+  stroke-width: 0px;
 }
 
 
@@ -337,6 +338,7 @@
 
 .f3 .link {
   transition: stroke-width 0.2s ease-in-out;
+  stroke-width: 3px;
 }
 
 .f3 .link.f3-path-to-main {

@@ -8,7 +8,6 @@ app = Flask(__name__)
 CORS(app)  # Bật CORS để cho phép gọi từ browser
 import os 
 @app.route("/api/family", methods=["GET"])
-@app.route('/upload', methods=['POST'])
 def get_family_data():
 
     file_path = os.path.join(os.path.dirname(__file__), 'Thong tin gia dinh.xlsm')

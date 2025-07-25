@@ -1,7 +1,6 @@
 import f3 from './index_support.js'
 
-fetch("./family_people_list.json").then(r => r.json()).then(data => {
-
+fetch("./family_people_list_official.json").then(r => r.json()).then(data => {
   const store = f3.createStore({
       data,
       node_separation: 250,
