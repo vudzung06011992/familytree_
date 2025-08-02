@@ -86,7 +86,16 @@ def get_family_data():
         gender_map = {}
         for _, row in df_data.iterrows():
             person_id = str(row["entity_id"])
-            gender = str(row.get("gender", "")).strip().upper()
+            gender_raw = str(row.get("gender", "")).strip()
+            
+            # Chuyển đổi giới tính về M/F
+            if gender_raw.upper() in ["NAM", "MALE", "M"]:
+                gender = "M"
+            elif gender_raw.upper() in ["NỮ", "NU", "FEMALE", "F"]:
+                gender = "F"
+            else:
+                gender = gender_raw.upper()  # Giữ nguyên nếu không match
+                
             gender_map[person_id] = gender
         
         # Lấy tất cả các ID người
@@ -165,6 +174,16 @@ def get_family_data():
     def to_bool(val):
         return bool(val) if pd.notna(val) else False
 
+    # Hàm chuyển đổi giới tính
+    def convert_gender(gender_raw):
+        gender_str = str(gender_raw).strip()
+        if gender_str.upper() in ["NAM", "MALE", "M"]:
+            return "M"
+        elif gender_str.upper() in ["NỮ", "NU", "FEMALE", "F"]:
+            return "F"
+        else:
+            return gender_str  # Giữ nguyên nếu không match
+
     # Xây dựng list người
     people = []
     for _, row in df_data.iterrows():
@@ -177,7 +196,7 @@ def get_family_data():
                 "middle name": row.get("middle_name", " "),
                 "last name": row.get("last_name", " "),
                 "alias": row.get("alias", " "),
-                "gender": row.get("gender", " "),
+                "gender": convert_gender(row.get("gender", " ")),
                 "birthday": pd.to_datetime(row.get("date_of_birth", " "), errors="coerce").strftime("%Y") if pd.notna(row.get("date_of_birth", " ")) else " ",
 
                 "avatar": " ",

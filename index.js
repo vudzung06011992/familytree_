@@ -4,7 +4,8 @@ fetch("./family_people_list.json").then(r => r.json()).then(data => {
   const store = f3.createStore({
       data,
       node_separation: 250,
-      level_separation: 150
+      level_separation: 180,
+      single_parent_empty_card: false
     }),
     svg = f3.createSvg(document.querySelector("#FamilyChart")),
     Card = f3.elements.Card({
