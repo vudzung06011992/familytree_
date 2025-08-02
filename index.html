@@ -60,6 +60,10 @@
       }
 
       status.innerText = "📤 Đang upload file...";
+      Object.assign(status.style, {
+        fontFamily: "Arial",
+        fontSize: "12px"
+      });
       const formData = new FormData();
       formData.append('file', file);
 
@@ -93,6 +97,7 @@
         script.onload = () => {
           status.innerText = "Cây gia phả đã được tải thành công!";
           status.style.fontFamily = "Arial";
+          status.style.fontSize = "12px"; // hoặc "smaller", "0.9em", v.v.
         };
         script.onerror = (err) => {
           console.error('❌ Lỗi khi tải script:', err);

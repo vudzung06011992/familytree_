@@ -17,18 +17,26 @@ export function CardText({ d, card_dim, card_display }) {
             <text text-anchor="middle" dominant-baseline="central">
               ${
                 Array.isArray(card_display)
-                  ? card_display.map((cd, i) => {
-                      const content = cd(d.data);
-                      // Handle line breaks for long names
-                      if (content.includes('\n')) {
-                        const lines = content.split('\n');
-                        return lines.map((line, lineIndex) => 
-                          `<tspan x="0" dy="${i === 0 && lineIndex === 0 ? -15 : lineIndex === 0 ? 25 : 16}">${line}</tspan>`
-                        ).join('');
-                      } else {
-                        return `<tspan x="0" dy="${i === 0 ? -15 : 25}">${content}</tspan>`;
-                      }
-                    }).join('')
+                  ? (() => {
+                      const allLines = [];
+                      card_display.forEach((cd) => {
+                        const content = cd(d.data);
+                        if (content.includes('\n')) {
+                          allLines.push(...content.split('\n'));
+                        } else {
+                          allLines.push(content);
+                        }
+                      });
+                      
+                      // Calculate vertical offset to center all lines with more spacing
+                      const lineHeight = 20; // Increased from 16 to 20 for more spacing
+                      const totalHeight = (allLines.length - 1) * lineHeight;
+                      const startY = -totalHeight / 2;
+                      
+                      return allLines.map((line, index) => 
+                        `<tspan x="0" dy="${index === 0 ? startY : lineHeight}">${line}</tspan>`
+                      ).join('');
+                    })()
                   : `<tspan x="0" dy="0">${card_display(d.data)}</tspan>`
               }
             </text>
