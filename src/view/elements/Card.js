@@ -28,18 +28,17 @@ export function Card(props) {
     appendTemplate(CardBodyOutline({d,card_dim,is_new:d.data.to_add}).template, card.node(), true)
     appendElement(cardElements.cardBody(d, props), this.querySelector('.card-inner'))
 
-    // Add sidebar event handlers to all rect elements in the card
-    const cardElement = d3.select(this);
-    cardElement.selectAll('rect')
-      .on('click', function(event) {
-        // Check if Ctrl key is pressed
-        if (event.ctrlKey) {
-          event.preventDefault(); // Prevent default click behavior
-          event.stopPropagation(); // Stop event from bubbling to prevent normal click
-          showSidebar(sidebar, d);
-        }
-        // If Ctrl is not pressed, let the normal click handler in cardBody handle it
-      });
+    // Add a high-priority click handler for Ctrl+click using capture phase
+    this.addEventListener('click', function(event) {
+      // Check if Ctrl key is pressed
+      if (event.ctrlKey) {
+        event.preventDefault(); // Prevent default click behavior
+        event.stopPropagation(); // Stop event from bubbling
+        event.stopImmediatePropagation(); // Stop other handlers on same element
+        showSidebar(sidebar, d);
+        return false; // Additional prevention
+      }
+    }, true); // Use capture phase (true) for higher priority
 
     if (props.img) appendElement(cardElements.cardImage(d, props), this.querySelector('.card'))
     if (props.mini_tree) appendElement(cardElements.miniTree(d, props), this.querySelector('.card'), true)

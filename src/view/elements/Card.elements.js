@@ -29,7 +29,8 @@ function miniTree(d, props) {
   g.on("click", function (e) {
     // Check if Ctrl key is pressed - if so, let the main rect handler handle it
     if (e.ctrlKey) {
-      return; // Don't stopPropagation, let the event bubble to the rect handler
+      // Don't stop propagation, let it bubble up to the rect handler
+      return;
     }
     e.stopPropagation();
     if (props.onMiniTreeClick) props.onMiniTreeClick.call(this, e, d)
@@ -45,7 +46,8 @@ function lineBreak(d, props) {
   g.on("click", (e) => {
     // Check if Ctrl key is pressed - if so, let the main rect handler handle it
     if (e.ctrlKey) {
-      return; // Don't stopPropagation, let the event bubble to the rect handler
+      // Don't stop propagation, let it bubble up to the rect handler
+      return;
     }
     e.stopPropagation();
     cardShowHideRels(props.store, {d})
@@ -63,7 +65,8 @@ function cardBody(d, props) {
     g.on("click", function (e) {
       // Check if Ctrl key is pressed - if so, let the main rect handler handle it
       if (e.ctrlKey) {
-        return; // Don't stopPropagation, let the event bubble to the rect handler
+        // Don't stop propagation, let it bubble up to the rect handler
+        return;
       }
       e.stopPropagation();
       if (props.onCardClick) props.onCardClick.call(this, e, d)
@@ -74,7 +77,8 @@ function cardBody(d, props) {
     g.on("click", (e) => {
       // Check if Ctrl key is pressed - if so, let the main rect handler handle it
       if (e.ctrlKey) {
-        return; // Don't stopPropagation, let the event bubble to the rect handler
+        // Don't stop propagation, let it bubble up to the rect handler
+        return;
       }
       e.stopPropagation();
       cardEdit(props.store, {d, cardEditForm: props.cardEditForm})
@@ -97,7 +101,8 @@ function cardEditIcon(d, props) {
   g.on("click", (e) => {
     // Check if Ctrl key is pressed - if so, let the main rect handler handle it
     if (e.ctrlKey) {
-      return; // Don't stopPropagation, let the event bubble to the rect handler
+      // Don't stop propagation, let it bubble up to the rect handler
+      return;
     }
     e.stopPropagation();
     cardEdit(props.store, {d, cardEditForm: props.cardEditForm})
@@ -113,7 +118,8 @@ function cardAddIcon(d, props) {
   g.on("click", (e) => {
     // Check if Ctrl key is pressed - if so, let the main rect handler handle it
     if (e.ctrlKey) {
-      return; // Don't stopPropagation, let the event bubble to the rect handler
+      // Don't stop propagation, let it bubble up to the rect handler
+      return;
     }
     e.stopPropagation();
     props.addRelative({d})
