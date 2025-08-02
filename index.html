@@ -91,7 +91,8 @@
         script.type = 'module';
         script.src = `./index.js?t=${Date.now()}`;
         script.onload = () => {
-          status.innerText = "✅ Cây gia phả đã được tải thành công!";
+          status.innerText = "Cây gia phả đã được tải thành công!";
+          status.style.fontFamily = "Arial";
         };
         script.onerror = (err) => {
           console.error('❌ Lỗi khi tải script:', err);
