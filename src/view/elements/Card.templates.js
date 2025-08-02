@@ -23,7 +23,7 @@ export function CardText({ d, card_dim, card_display }) {
                       if (content.includes('\n')) {
                         const lines = content.split('\n');
                         return lines.map((line, lineIndex) => 
-                          `<tspan x="0" dy="${i === 0 && lineIndex === 0 ? -15 : lineIndex === 0 ? 25 : 12}">${line}</tspan>`
+                          `<tspan x="0" dy="${i === 0 && lineIndex === 0 ? -15 : lineIndex === 0 ? 25 : 16}">${line}</tspan>`
                         ).join('');
                       } else {
                         return `<tspan x="0" dy="${i === 0 ? -15 : 25}">${content}</tspan>`;
@@ -66,7 +66,7 @@ export function CardBodyAddNewRel({d,card_dim,label}) {
 
 export function CardBodyOutline({d,card_dim, is_new}) {
   return {template: (`
-    <rect width="${card_dim.w}" height="${card_dim.h}" rx="4" ry="4" class="card-outline ${(d.data.main && !is_new) ? 'card-main-outline' : ''} ${is_new ? 'card-new-outline' : ''}" />
+    <rect width="${card_dim.w}" height="${card_dim.h}" class="card-outline ${(d.data.main && !is_new) ? 'card-main-outline' : ''} ${is_new ? 'card-new-outline' : ''}" />
   `)
   }
 }
@@ -108,8 +108,8 @@ export function MiniTree({d,card_dim}) {
         <rect x="-31" y="-25" width="72" height="15" fill="rgba(0,0,0,0)"></rect>
         <line y2="-17.5" stroke="#fff" />
         <line x1="-20" x2="20" y1="-17.5" y2="-17.5" stroke="#fff" />
-        <rect x="-31" y="-25" width="25" height="15" rx="5" ry="5" class="card-male" />
-        <rect x="6" y="-25" width="25" height="15" rx="5" ry="5" class="card-female" />
+        <rect x="-31" y="-25" width="25" height="15" class="card-male" />
+        <rect x="6" y="-25" width="25" height="15" class="card-female" />
       </g>
     </g>
   `)})

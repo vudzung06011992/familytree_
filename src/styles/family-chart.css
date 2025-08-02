@@ -26,26 +26,35 @@
   text-anchor: middle;  /* Center text horizontally */
   dominant-baseline: central;  /* Center text vertically */
 }
+
+/* Ensure all SVG rect elements have square corners */
+.f3 svg rect {
+  border-radius: 0 !important;
+}
 .f3 rect.card-female, .f3 .card-female .card-body-rect, .f3 .card-female .text-overflow-mask {
   fill: var(--female-color);
   stroke:  #fff;
   stroke-width: 0px;
+  border-radius: 0;
 }
 .f3 rect.card-male, .f3 .card-male .card-body-rect, .f3 .card-male .text-overflow-mask {
   fill: var(--male-color);
   stroke:  #fff;
   stroke-width: 0px;
+  border-radius: 0;
 }
 
 .f3 rect.card-genderless, .f3 .card-genderless .card-body-rect, .f3 .card-genderless .text-overflow-mask {
   fill: var(--genderless-color);
   stroke:  #fff;
   stroke-width: 0px;
+  border-radius: 0;
 }
 
 .f3 rect.card-male, .f3 rect.card-female {
   stroke:  #fff;
   stroke-width: 0px;
+  border-radius: 0;
 }
 
 
@@ -127,7 +136,6 @@
 
 .f3 div.card-rect {
   padding: 5px;
-  border-radius: 3px;
   width: 120px;
   min-height: 70px;
   overflow: hidden;
@@ -143,7 +151,6 @@
   min-height: 0px;
   display: flex;
   align-items: center;
-  border-radius: 5px;
 }
 
 .f3 div.card-image-rect .person-icon {
@@ -162,7 +169,6 @@
   flex: 0 0 auto;
   padding: 5px;
   margin-right: 10px;
-  border-radius: 8px;
 }
 
 .f3 div.card-image-rect svg {
@@ -170,7 +176,6 @@
   width: 0%;
   height: 0%;
   padding: 5px;
-  border-radius: 7px;
 }
 
 .f3 div.card-image-rect div.card-label {
@@ -397,7 +402,6 @@
   position: relative;
   background-color: var(--background-color);
   border: 1px solid #888;
-  border-radius: 5px;
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -441,7 +445,6 @@
 
   border-width: 0;
   outline: none;
-  border-radius: 3px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
   
   background-color: var(--text-color);

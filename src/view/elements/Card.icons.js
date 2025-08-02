@@ -109,8 +109,8 @@ export function miniTreeIcon() {
         <rect x="-31" y="-25" width="72" height="15" fill="rgba(0,0,0,0)"></rect>
         <line y2="-17.5" stroke="#fff" />
         <line x1="-20" x2="20" y1="-17.5" y2="-17.5" stroke="#fff" />
-        <rect x="-31" y="-25" width="25" height="15" rx="5" ry="5" class="card-male" />
-        <rect x="6" y="-25" width="25" height="15" rx="5" ry="5" class="card-female" />
+        <rect x="-31" y="-25" width="25" height="15" class="card-male" />
+        <rect x="6" y="-25" width="25" height="15" class="card-female" />
       </g>
     </g>
   `)
