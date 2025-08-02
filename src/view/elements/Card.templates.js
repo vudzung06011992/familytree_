@@ -13,13 +13,22 @@ export function CardText({ d, card_dim, card_display }) {
     template: (`
       <g>
         <g class="card-text" clip-path="url(#card_text_clip)">
-          <g transform="translate(${card_dim.w / 2}, ${card_dim.text_y})">
-            <text text-anchor="middle" dominant-baseline="hanging">
+          <g transform="translate(${card_dim.w / 2}, ${card_dim.h / 2})">
+            <text text-anchor="middle" dominant-baseline="central">
               ${
                 Array.isArray(card_display)
-                  ? card_display.map((cd, i) =>
-                      `<tspan x="0" dy="${i === 0 ? 0 : 25}">${cd(d.data)}</tspan>`
-                    ).join('\n')
+                  ? card_display.map((cd, i) => {
+                      const content = cd(d.data);
+                      // Handle line breaks for long names
+                      if (content.includes('\n')) {
+                        const lines = content.split('\n');
+                        return lines.map((line, lineIndex) => 
+                          `<tspan x="0" dy="${i === 0 && lineIndex === 0 ? -15 : lineIndex === 0 ? 25 : 12}">${line}</tspan>`
+                        ).join('');
+                      } else {
+                        return `<tspan x="0" dy="${i === 0 ? -15 : 25}">${content}</tspan>`;
+                      }
+                    }).join('')
                   : `<tspan x="0" dy="0">${card_display(d.data)}</tspan>`
               }
             </text>

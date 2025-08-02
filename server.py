@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import pandas as pd
 import json
 from collections import defaultdict
@@ -7,6 +7,20 @@ from flask_cors import CORS  # Cho phép gọi từ HTML JS
 app = Flask(__name__)
 CORS(app)  # Bật CORS để cho phép gọi từ browser
 import os 
+
+@app.route("/upload", methods=["POST"])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file provided"}), 400
+    
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({"error": "No file selected"}), 400
+    
+    # Lưu file upload
+    file.save('Thong tin gia dinh.xlsm')
+    return jsonify({"message": "File uploaded successfully"}), 200
+
 @app.route("/api/family", methods=["GET"])
 def get_family_data():
 
@@ -117,7 +131,7 @@ def get_family_data():
     people_cleaned = clean_nans(people)
 
     # Ghi ra file
-    with open(r"D:\FamilyTree\f6\family-chart-master/family_people_list.json", "w", encoding="utf-8") as f:
+    with open("family_people_list.json", "w", encoding="utf-8") as f:
         json.dump(people_cleaned, f, indent=2, ensure_ascii=False)
     print(people_cleaned)
     print("✅ Đã tạo xong file family_people_list.json với NaN → ' '")

@@ -23,6 +23,8 @@
 }
 .f3 svg.main_svg text {
   fill: var(--text-color);
+  text-anchor: middle;  /* Center text horizontally */
+  dominant-baseline: central;  /* Center text vertically */
 }
 .f3 rect.card-female, .f3 .card-female .card-body-rect, .f3 .card-female .text-overflow-mask {
   fill: var(--female-color);

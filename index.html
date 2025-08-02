@@ -80,9 +80,24 @@
         // Xoá cây hiện tại
         document.getElementById('FamilyChart').innerHTML = '';
 
-        // Tải lại index.js với timestamp để đảm bảo không bị cache
-        const timestamp = Date.now();
-        await import(`./index.js?t=${timestamp}`);
+        // Remove existing script if any
+        const existingScript = document.querySelector('script[src*="index.js"]');
+        if (existingScript) {
+          existingScript.remove();
+        }
+
+        // Add new script tag to reload the module
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = `./index.js?t=${Date.now()}`;
+        script.onload = () => {
+          status.innerText = "✅ Cây gia phả đã được tải thành công!";
+        };
+        script.onerror = (err) => {
+          console.error('❌ Lỗi khi tải script:', err);
+          status.innerText = "❌ Lỗi khi tải script.";
+        };
+        document.head.appendChild(script);
 
       } catch (error) {
         console.error('❌ Lỗi:', error);

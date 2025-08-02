@@ -1,6 +1,6 @@
 import f3 from './index_support.js'
 
-fetch("./family_people_list_official.json").then(r => r.json()).then(data => {
+fetch("./family_people_list_v2.json").then(r => r.json()).then(data => {
   const store = f3.createStore({
       data,
       node_separation: 250,
@@ -10,9 +10,20 @@ fetch("./family_people_list_official.json").then(r => r.json()).then(data => {
     Card = f3.elements.Card({
       store,
       svg,
-      card_dim: {w:220,h:70,text_x:75,text_y:15,img_w:0,img_h:0,img_x:0,img_y:0},
+      card_dim: {w:220,h:80,text_x:110,text_y:15,img_w:0,img_h:0,img_x:0,img_y:0},
       card_display: [
-                              d => `${d.data["first name"]} ${d.data["last name"]}`,
+                              d => {
+                                const fullName = `${d.data["first name"] || ''} ${d.data["last name"] || ''}`.trim();
+                                // If name is too long (> 15 characters), split into two lines
+                                if (fullName.length > 15) {
+                                  const words = fullName.split(' ');
+                                  const mid = Math.ceil(words.length / 2);
+                                  const firstLine = words.slice(0, mid).join(' ');
+                                  const secondLine = words.slice(mid).join(' ');
+                                  return `${firstLine}\n${secondLine}`;
+                                }
+                                return fullName;
+                              },
                               d => `${d.data["birthday"] || ''}`
                             ],
       mini_tree: true,
