@@ -35,8 +35,10 @@ export function Card(props) {
         // Check if Ctrl key is pressed
         if (event.ctrlKey) {
           event.preventDefault(); // Prevent default click behavior
+          event.stopPropagation(); // Stop event from bubbling to prevent normal click
           showSidebar(sidebar, d);
         }
+        // If Ctrl is not pressed, let the normal click handler in cardBody handle it
       });
 
     if (props.img) appendElement(cardElements.cardImage(d, props), this.querySelector('.card'))
