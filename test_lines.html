@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Straight Lines</title>
+</head>
+<body>
+    <h1>Test Straight Lines</h1>
+    <svg width="400" height="300" style="border: 1px solid black;">
+        <!-- Test straight line path -->
+        <path d="M50,50 L150,50 L150,150 L250,150" 
+              fill="none" 
+              stroke="red" 
+              stroke-width="3"
+              stroke-linecap="square" 
+              stroke-linejoin="miter" />
+        
+        <!-- Test curved line for comparison -->
+        <path d="M50,200 Q150,150 250,200" 
+              fill="none" 
+              stroke="blue" 
+              stroke-width="3" />
+              
+        <text x="10" y="30">Red = Straight (what we want)</text>
+        <text x="10" y="280">Blue = Curved (what we don't want)</text>
+    </svg>
+</body>
+</html>

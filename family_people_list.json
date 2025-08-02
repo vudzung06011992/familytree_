@@ -1,41 +1,78 @@
 [
   {
+    "id": "0",
+    "rels": {
+      "children": [
+        "1",
+        "3",
+        "5",
+        "7",
+        "9"
+      ]
+    },
+    "data": {
+      "first name": "Nguyễn",
+      "middle name": "Văn",
+      "last name": "Lợi",
+      "alias": " ",
+      "gender": "Nam",
+      "birthday": "1930",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Hà Nội",
+      "place of birth": "Hà Nội",
+      "place of residence": "Hà Nội",
+      "is dead": true,
+      "date of death": "2005-01-01",
+      "place of death": "Hà Nội",
+      "ethnicity": "Kinh",
+      "educational level": "THPT",
+      "is cpv member": true,
+      "occupation": "Cán bộ hưu trí",
+      "career": "Quản lý nhà nước",
+      "characteristics": "Nghiêm khắc",
+      "phone": " ",
+      "email": " ",
+      "full name": "Nguyễn Văn Lợi",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
     "id": "1",
     "rels": {
+      "father": "0",
       "spouses": [
         "2"
       ],
       "children": [
-        "3",
-        "4"
-      ],
-      "father": "6",
-      "mother": "7"
+        "11",
+        "13"
+      ]
     },
     "data": {
-      "first name": " ",
-      "middle name": " ",
-      "last name": "Nghia",
-      "alias": "donaldgarcia",
+      "first name": "Phạm",
+      "middle name": "Hữu",
+      "last name": "Nam",
+      "alias": " ",
       "gender": "Nam",
-      "birthday": "1947",
+      "birthday": "1991",
       "avatar": " ",
       "nationality": "Việt Nam",
-      "place of origin": "New Roberttown",
-      "place of birth": "East William",
-      "place of residence": "863 Lawrence Valleys, Port Lindachester, KY 20880",
+      "place of origin": "Đà Nẵng",
+      "place of birth": "Đà Nẵng",
+      "place of residence": "TP.HCM",
       "is dead": false,
       "date of death": " ",
       "place of death": " ",
-      "ethnicity": "Thái",
-      "educational level": "Cao đẳng",
-      "is cpv member": false,
-      "occupation": "Giáo viên",
-      "career": "Đã công tác tại Bernard LLC trong 5 năm",
-      "characteristics": "blue - best - husband",
-      "phone": "559-407-8161",
-      "email": "barbara10@hotmail.com",
-      "full name": "Hill Angel Mark",
+      "ethnicity": "Kinh",
+      "educational level": "Thạc sĩ",
+      "is cpv member": true,
+      "occupation": "Kỹ sư",
+      "career": "Nông nghiệp",
+      "characteristics": "Nhiệt tình",
+      "phone": 971277878.0,
+      "email": "nam1@outlook.com",
+      "full name": "Phạm Hữu Nam",
       "last update": "2025-07-15 00:00:00"
     }
   },
@@ -46,212 +83,215 @@
         "1"
       ],
       "children": [
-        "3",
-        "4"
+        "11",
+        "13"
       ]
     },
     "data": {
-      "first name": " ",
-      "middle name": " ",
-      "last name": "Phuong",
-      "alias": "michellejames",
-      "gender": "Nam",
-      "birthday": "1956",
+      "first name": "Võ",
+      "middle name": "Thị",
+      "last name": "Lan",
+      "alias": " ",
+      "gender": "Nữ",
+      "birthday": "1963",
       "avatar": " ",
       "nationality": "Việt Nam",
-      "place of origin": "Reidstad",
-      "place of birth": "Michaelview",
-      "place of residence": "283 Steven Groves, Lake Mark, WI 07832",
+      "place of origin": "Đà Nẵng",
+      "place of birth": "Cần Thơ",
+      "place of residence": "Hà Nội",
       "is dead": false,
       "date of death": " ",
       "place of death": " ",
-      "ethnicity": "Hoa",
+      "ethnicity": "Kinh",
       "educational level": "Thạc sĩ",
       "is cpv member": false,
-      "occupation": "Kỹ sư",
-      "career": "Đã công tác tại Underwood LLC trong 5 năm",
-      "characteristics": "institution - executive - attorney",
-      "phone": "953.767.2423",
-      "email": "zhurst@yahoo.com",
-      "full name": "Miller Keith Darren",
+      "occupation": "Nông dân",
+      "career": "Y tế",
+      "characteristics": "Kỹ tính",
+      "phone": 916292303.0,
+      "email": "lan2@outlook.com",
+      "full name": "Võ Thị Lan",
       "last update": "2025-07-15 00:00:00"
     }
   },
   {
     "id": "3",
     "rels": {
-      "father": "1",
-      "mother": "2",
+      "father": "0",
       "spouses": [
-        "5",
-        "8"
+        "4"
+      ],
+      "children": [
+        "15",
+        "17"
       ]
     },
     "data": {
-      "first name": " ",
-      "middle name": " ",
-      "last name": "Dung",
-      "alias": "camposmichelle",
-      "gender": "Nam",
-      "birthday": "1991",
+      "first name": "Lê",
+      "middle name": "Ngọc",
+      "last name": "Hương",
+      "alias": " ",
+      "gender": "Nữ",
+      "birthday": "1951",
       "avatar": " ",
       "nationality": "Việt Nam",
-      "place of origin": "Lake Ernest",
-      "place of birth": "South Patrickmouth",
-      "place of residence": "184 Rodriguez Mews, South Aaron, VA 35023",
-      "is dead": false,
-      "date of death": " ",
-      "place of death": " ",
-      "ethnicity": "Tày",
-      "educational level": "Tiến sĩ",
+      "place of origin": "Hà Nội",
+      "place of birth": "Huế",
+      "place of residence": "Hà Nội",
+      "is dead": true,
+      "date of death": "2001-03-27",
+      "place of death": "TP.HCM",
+      "ethnicity": "Kinh",
+      "educational level": "Cao đẳng",
       "is cpv member": false,
-      "occupation": "Nông dân",
-      "career": "Đã công tác tại Gill, Romero and Rodriguez trong 5 năm",
-      "characteristics": "process - fire - thought",
-      "phone": "+1-893-252-8809x5701",
-      "email": "john39@gmail.com",
-      "full name": "Hicks Whitney Daniel",
+      "occupation": "Công nhân",
+      "career": "Nông nghiệp",
+      "characteristics": "Vui vẻ",
+      "phone": 932096328.0,
+      "email": "hương3@outlook.com",
+      "full name": "Lê Ngọc Hương",
       "last update": "2025-07-15 00:00:00"
     }
   },
   {
     "id": "4",
     "rels": {
-      "father": "1",
-      "mother": "2"
+      "spouses": [
+        "3"
+      ],
+      "children": [
+        "15",
+        "17"
+      ]
     },
     "data": {
-      "first name": " ",
-      "middle name": " ",
-      "last name": "Thao",
-      "alias": "davidalvarez",
+      "first name": "Lê",
+      "middle name": "Công",
+      "last name": "Quân",
+      "alias": " ",
       "gender": "Nam",
-      "birthday": "1992",
+      "birthday": "1998",
       "avatar": " ",
       "nationality": "Việt Nam",
-      "place of origin": "West Allison",
-      "place of birth": "New Karina",
-      "place of residence": "5787 John Circles Suite 098, New Jeffrey, VT 83220",
-      "is dead": true,
-      "date of death": "2007-07-16",
-      "place of death": "North Rebecca",
-      "ethnicity": "Tày",
-      "educational level": "Thạc sĩ",
-      "is cpv member": true,
-      "occupation": "Kỹ sư",
-      "career": "Đã công tác tại Jones-Young trong 5 năm",
-      "characteristics": "relationship - mention - difficult",
-      "phone": -7346,
-      "email": "rodney70@hotmail.com",
-      "full name": "Jones Todd Bradley",
+      "place of origin": "TP.HCM",
+      "place of birth": "Hà Nội",
+      "place of residence": "Cần Thơ",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "THPT",
+      "is cpv member": false,
+      "occupation": "Công nhân",
+      "career": "Tự do",
+      "characteristics": "Vui vẻ",
+      "phone": 954291390.0,
+      "email": "quân4@outlook.com",
+      "full name": "Lê Công Quân",
       "last update": "2025-07-15 00:00:00"
     }
   },
   {
     "id": "5",
     "rels": {
+      "father": "0",
       "spouses": [
-        "3"
+        "6"
       ]
     },
     "data": {
-      "first name": " ",
-      "middle name": " ",
-      "last name": "Mai",
-      "alias": "lauren13",
+      "first name": "Lê",
+      "middle name": "Ngọc",
+      "last name": "Nam",
+      "alias": " ",
       "gender": "Nam",
-      "birthday": "1953",
+      "birthday": "1958",
       "avatar": " ",
       "nationality": "Việt Nam",
-      "place of origin": "East Amanda",
-      "place of birth": "Whitemouth",
-      "place of residence": "8108 Tanya Terrace, East Richard, IL 53066",
+      "place of origin": "Hà Nội",
+      "place of birth": "TP.HCM",
+      "place of residence": "Hà Nội",
       "is dead": true,
-      "date of death": "2007-07-13",
-      "place of death": "South Aaron",
-      "ethnicity": "Thái",
+      "date of death": "2019-07-07",
+      "place of death": "TP.HCM",
+      "ethnicity": "Kinh",
       "educational level": "THPT",
-      "is cpv member": false,
-      "occupation": "Giáo viên",
-      "career": "Đã công tác tại Baker-Bowers trong 5 năm",
-      "characteristics": "look - feeling - land",
-      "phone": "001-872-343-0980x500",
-      "email": "brianromero@gmail.com",
-      "full name": "Brown Debbie Matthew",
+      "is cpv member": true,
+      "occupation": "Nông dân",
+      "career": "Tự do",
+      "characteristics": "Tỉ mỉ",
+      "phone": 975322817.0,
+      "email": "nam5@yahoo.com",
+      "full name": "Lê Ngọc Nam",
       "last update": "2025-07-15 00:00:00"
     }
   },
   {
     "id": "6",
     "rels": {
-      "children": [
-        "1"
-      ],
       "spouses": [
-        "7"
+        "5"
       ]
     },
     "data": {
-      "first name": " ",
-      "middle name": " ",
-      "last name": "Ong Noi ",
-      "alias": "kwilson",
-      "gender": "Nữ",
-      "birthday": "1945",
+      "first name": "Trần",
+      "middle name": "Đức",
+      "last name": "Tú",
+      "alias": " ",
+      "gender": "Nam",
+      "birthday": "1974",
       "avatar": " ",
       "nationality": "Việt Nam",
-      "place of origin": "New Brooke",
-      "place of birth": "Sandovalshire",
-      "place of residence": "53462 Bryant Terrace Apt. 079, North Amandahaven, DC 46246",
+      "place of origin": "Hà Nội",
+      "place of birth": "Cần Thơ",
+      "place of residence": "TP.HCM",
       "is dead": false,
       "date of death": " ",
       "place of death": " ",
       "ethnicity": "Kinh",
-      "educational level": "Thạc sĩ",
+      "educational level": "Cao đẳng",
       "is cpv member": false,
-      "occupation": "Công an",
-      "career": "Đã công tác tại Suarez LLC trong 5 năm",
-      "characteristics": "feel - coach - left",
-      "phone": -1822,
-      "email": "josephjacobs@cooper.net",
-      "full name": "Hensley Carlos Andrea",
+      "occupation": "Giáo viên",
+      "career": "Công nghệ",
+      "characteristics": "Nhiệt tình",
+      "phone": 955415421.0,
+      "email": "tú6@gmail.com",
+      "full name": "Trần Đức Tú",
       "last update": "2025-07-15 00:00:00"
     }
   },
   {
     "id": "7",
     "rels": {
-      "children": [
-        "1"
-      ],
+      "father": "0",
       "spouses": [
-        "6"
+        "8"
       ]
     },
     "data": {
-      "first name": " ",
-      "middle name": " ",
-      "last name": "Ba Noi",
-      "alias": "waltersmaria",
-      "gender": "Nữ",
-      "birthday": "1970",
+      "first name": "Nguyễn",
+      "middle name": "Văn",
+      "last name": "Tú",
+      "alias": " ",
+      "gender": "Nam",
+      "birthday": "1975",
       "avatar": " ",
       "nationality": "Việt Nam",
-      "place of origin": "North Matthewberg",
-      "place of birth": "Lake Scott",
-      "place of residence": "12805 Russell Canyon, Michaelton, MI 28036",
-      "is dead": true,
-      "date of death": "2014-10-01",
-      "place of death": "West Kimberlychester",
+      "place of origin": "Hà Nội",
+      "place of birth": "Cần Thơ",
+      "place of residence": "Hà Nội",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
       "ethnicity": "Kinh",
-      "educational level": "Thạc sĩ",
+      "educational level": "THPT",
       "is cpv member": false,
-      "occupation": "Bác sĩ",
-      "career": "Đã công tác tại Brady, Frost and Young trong 5 năm",
-      "characteristics": "commercial - such - talk",
-      "phone": "(602)563-4216",
-      "email": "dwalker@torres-pope.com",
-      "full name": "Mathis Rebecca Katherine",
+      "occupation": "Sinh viên",
+      "career": "Công nghệ",
+      "characteristics": "Kỹ tính",
+      "phone": 968491596.0,
+      "email": "tú7@yahoo.com",
+      "full name": "Nguyễn Văn Tú",
       "last update": "2025-07-15 00:00:00"
     }
   },
@@ -259,33 +299,456 @@
     "id": "8",
     "rels": {
       "spouses": [
-        "3"
+        "7"
       ]
     },
     "data": {
-      "first name": " ",
-      "middle name": " ",
-      "last name": "Mai1",
-      "alias": "lauren13",
+      "first name": "Nguyễn",
+      "middle name": "Đức",
+      "last name": "Dũng",
+      "alias": " ",
       "gender": "Nam",
-      "birthday": "1953",
+      "birthday": "1952",
       "avatar": " ",
       "nationality": "Việt Nam",
-      "place of origin": "East Amanda",
-      "place of birth": "Whitemouth",
-      "place of residence": "8108 Tanya Terrace, East Richard, IL 53066",
+      "place of origin": "TP.HCM",
+      "place of birth": "Huế",
+      "place of residence": "Huế",
       "is dead": true,
-      "date of death": "2007-07-13",
-      "place of death": "South Aaron",
-      "ethnicity": "Thái",
-      "educational level": "THPT",
+      "date of death": "2005-11-24",
+      "place of death": "Đà Nẵng",
+      "ethnicity": "Kinh",
+      "educational level": "Cao đẳng",
+      "is cpv member": true,
+      "occupation": "Bác sĩ",
+      "career": "Y tế",
+      "characteristics": "Tỉ mỉ",
+      "phone": 940391069.0,
+      "email": "dũng8@yahoo.com",
+      "full name": "Nguyễn Đức Dũng",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "9",
+    "rels": {
+      "father": "0",
+      "spouses": [
+        "10"
+      ]
+    },
+    "data": {
+      "first name": "Trần",
+      "middle name": "Thị",
+      "last name": "Vy",
+      "alias": " ",
+      "gender": "Nữ",
+      "birthday": "1994",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Huế",
+      "place of birth": "TP.HCM",
+      "place of residence": "Đà Nẵng",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Thạc sĩ",
       "is cpv member": false,
+      "occupation": "Sinh viên",
+      "career": "Xây dựng",
+      "characteristics": "Vui vẻ",
+      "phone": 916577906.0,
+      "email": "vy9@yahoo.com",
+      "full name": "Trần Thị Vy",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "10",
+    "rels": {
+      "spouses": [
+        "9"
+      ]
+    },
+    "data": {
+      "first name": "Lê",
+      "middle name": "Văn",
+      "last name": "Quân",
+      "alias": " ",
+      "gender": "Nam",
+      "birthday": "2001",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "TP.HCM",
+      "place of birth": "Hà Nội",
+      "place of residence": "Đà Nẵng",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Thạc sĩ",
+      "is cpv member": false,
+      "occupation": "Sinh viên",
+      "career": "Xây dựng",
+      "characteristics": "Nhiệt tình",
+      "phone": 999681222.0,
+      "email": "quân10@outlook.com",
+      "full name": "Lê Văn Quân",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "11",
+    "rels": {
+      "father": "1",
+      "mother": "2",
+      "spouses": [
+        "12"
+      ],
+      "children": [
+        "19",
+        "20"
+      ]
+    },
+    "data": {
+      "first name": "Lê",
+      "middle name": "Ngọc",
+      "last name": "Vy",
+      "alias": " ",
+      "gender": "Nữ",
+      "birthday": "1979",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Hà Nội",
+      "place of birth": "Cần Thơ",
+      "place of residence": "Huế",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Đại học",
+      "is cpv member": true,
+      "occupation": "Kỹ sư",
+      "career": "Giáo dục",
+      "characteristics": "Nhiệt tình",
+      "phone": 924701395.0,
+      "email": "vy11@gmail.com",
+      "full name": "Lê Ngọc Vy",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "12",
+    "rels": {
+      "spouses": [
+        "11"
+      ],
+      "children": [
+        "19",
+        "20"
+      ]
+    },
+    "data": {
+      "first name": "Lê",
+      "middle name": "Ngọc",
+      "last name": "Vy",
+      "alias": " ",
+      "gender": "Nữ",
+      "birthday": "1968",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Cần Thơ",
+      "place of birth": "Đà Nẵng",
+      "place of residence": "Cần Thơ",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "THPT",
+      "is cpv member": true,
+      "occupation": "Bác sĩ",
+      "career": "Công nghệ",
+      "characteristics": "Vui vẻ",
+      "phone": 927902730.0,
+      "email": "vy12@yahoo.com",
+      "full name": "Lê Ngọc Vy",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "13",
+    "rels": {
+      "father": "1",
+      "mother": "2",
+      "spouses": [
+        "14"
+      ]
+    },
+    "data": {
+      "first name": "Võ",
+      "middle name": "Ngọc",
+      "last name": "Trang",
+      "alias": " ",
+      "gender": "Nữ",
+      "birthday": "1989",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Cần Thơ",
+      "place of birth": "Huế",
+      "place of residence": "TP.HCM",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Đại học",
+      "is cpv member": true,
       "occupation": "Giáo viên",
-      "career": "Đã công tác tại Baker-Bowers trong 5 năm",
-      "characteristics": "look - feeling - land",
-      "phone": "001-872-343-0980x500",
-      "email": "brianromero@gmail.com",
-      "full name": "Brown Debbie Matthew",
+      "career": "Nông nghiệp",
+      "characteristics": "Kỹ tính",
+      "phone": 926725883.0,
+      "email": "trang13@gmail.com",
+      "full name": "Võ Ngọc Trang",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "14",
+    "rels": {
+      "spouses": [
+        "13"
+      ]
+    },
+    "data": {
+      "first name": "Trần",
+      "middle name": "Hồng",
+      "last name": "Linh",
+      "alias": " ",
+      "gender": "Nữ",
+      "birthday": "1985",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Hà Nội",
+      "place of birth": "Đà Nẵng",
+      "place of residence": "Đà Nẵng",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Đại học",
+      "is cpv member": false,
+      "occupation": "Kỹ sư",
+      "career": "Y tế",
+      "characteristics": "Nhiệt tình",
+      "phone": 979850241.0,
+      "email": "linh14@gmail.com",
+      "full name": "Trần Hồng Linh",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "15",
+    "rels": {
+      "father": "3",
+      "mother": "4",
+      "spouses": [
+        "16"
+      ]
+    },
+    "data": {
+      "first name": "Nguyễn",
+      "middle name": "Thu",
+      "last name": "Trang",
+      "alias": " ",
+      "gender": "Nữ",
+      "birthday": "1960",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Huế",
+      "place of birth": "Đà Nẵng",
+      "place of residence": "Đà Nẵng",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "THPT",
+      "is cpv member": true,
+      "occupation": "Nông dân",
+      "career": "Giáo dục",
+      "characteristics": "Hiền lành",
+      "phone": 977848567.0,
+      "email": "trang15@gmail.com",
+      "full name": "Nguyễn Thu Trang",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "16",
+    "rels": {
+      "spouses": [
+        "15"
+      ]
+    },
+    "data": {
+      "first name": "Nguyễn",
+      "middle name": "Hữu",
+      "last name": "Tú",
+      "alias": " ",
+      "gender": "Nam",
+      "birthday": "1992",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "TP.HCM",
+      "place of birth": "Cần Thơ",
+      "place of residence": "Đà Nẵng",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Đại học",
+      "is cpv member": true,
+      "occupation": "Nông dân",
+      "career": "Y tế",
+      "characteristics": "Kỹ tính",
+      "phone": 992831513.0,
+      "email": "tú16@outlook.com",
+      "full name": "Nguyễn Hữu Tú",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "17",
+    "rels": {
+      "father": "3",
+      "mother": "4",
+      "spouses": [
+        "18"
+      ]
+    },
+    "data": {
+      "first name": "Phạm",
+      "middle name": "Công",
+      "last name": "Dũng",
+      "alias": " ",
+      "gender": "Nam",
+      "birthday": "1965",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Cần Thơ",
+      "place of birth": "Huế",
+      "place of residence": "Đà Nẵng",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Đại học",
+      "is cpv member": false,
+      "occupation": "Bác sĩ",
+      "career": "Nông nghiệp",
+      "characteristics": "Kỹ tính",
+      "phone": 939824856.0,
+      "email": "dũng17@gmail.com",
+      "full name": "Phạm Công Dũng",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "18",
+    "rels": {
+      "spouses": [
+        "17"
+      ]
+    },
+    "data": {
+      "first name": "Nguyễn",
+      "middle name": "Công",
+      "last name": "Dũng",
+      "alias": " ",
+      "gender": "Nam",
+      "birthday": "1962",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Cần Thơ",
+      "place of birth": "Đà Nẵng",
+      "place of residence": "TP.HCM",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Đại học",
+      "is cpv member": true,
+      "occupation": "Sinh viên",
+      "career": "Giáo dục",
+      "characteristics": "Tỉ mỉ",
+      "phone": 946716464.0,
+      "email": "dũng18@yahoo.com",
+      "full name": "Nguyễn Công Dũng",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "19",
+    "rels": {
+      "father": "11",
+      "mother": "12"
+    },
+    "data": {
+      "first name": "Trần",
+      "middle name": "Ngọc",
+      "last name": "Nam",
+      "alias": " ",
+      "gender": "Nam",
+      "birthday": "1987",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "TP.HCM",
+      "place of birth": "Cần Thơ",
+      "place of residence": "TP.HCM",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Cao đẳng",
+      "is cpv member": true,
+      "occupation": "Giáo viên",
+      "career": "Xây dựng",
+      "characteristics": "Vui vẻ",
+      "phone": 947227726.0,
+      "email": "nam19@yahoo.com",
+      "full name": "Trần Ngọc Nam",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "20",
+    "rels": {
+      "father": "11",
+      "mother": "12"
+    },
+    "data": {
+      "first name": "Trần",
+      "middle name": "Văn",
+      "last name": "Nam",
+      "alias": " ",
+      "gender": "Nam",
+      "birthday": "1997",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Huế",
+      "place of birth": "Huế",
+      "place of residence": "Huế",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Thạc sĩ",
+      "is cpv member": false,
+      "occupation": "Công nhân",
+      "career": "Tự do",
+      "characteristics": "Vui vẻ",
+      "phone": 996994253.0,
+      "email": "nam20@outlook.com",
+      "full name": "Trần Văn Nam",
       "last update": "2025-07-15 00:00:00"
     }
   }

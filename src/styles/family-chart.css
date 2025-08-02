@@ -346,6 +346,8 @@
 .f3 .link {
   transition: stroke-width 0.2s ease-in-out;
   stroke-width: 3px;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
 }
 
 .f3 .link.f3-path-to-main {

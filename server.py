@@ -74,6 +74,93 @@ def get_family_data():
                         rels_dict[id1]["mother"] = id2
                     rels_dict[id2]["children"].append(id1)
 
+    # Hàm bổ sung quan hệ đối xứng
+    def add_symmetric_relationships(rels_dict, df_data):
+        """
+        Bổ sung các quan hệ đối xứng thiếu:
+        - Vợ chồng: nếu A có spouse B mà B không có spouse A
+        - Bố con: nếu A có father B mà B không có children A
+        - Mẹ con: nếu A có mother B mà B không có children A
+        """
+        # Tạo mapping giới tính
+        gender_map = {}
+        for _, row in df_data.iterrows():
+            person_id = str(row["entity_id"])
+            gender = str(row.get("gender", "")).strip().upper()
+            gender_map[person_id] = gender
+        
+        # Lấy tất cả các ID người
+        all_ids = set(rels_dict.keys())
+        
+        # Duyệt qua từng người
+        for person_id in list(all_ids):
+            rels = rels_dict[person_id]
+            
+            # Xử lý quan hệ vợ chồng
+            if "spouses" in rels:
+                for spouse_id in rels["spouses"]:
+                    # Đảm bảo spouse_id tồn tại trong rels_dict
+                    if spouse_id not in rels_dict:
+                        rels_dict[spouse_id] = defaultdict(list)
+                    
+                    # Nếu spouse không có quan hệ ngược lại, thêm vào
+                    if "spouses" not in rels_dict[spouse_id]:
+                        rels_dict[spouse_id]["spouses"] = []
+                    if person_id not in rels_dict[spouse_id]["spouses"]:
+                        rels_dict[spouse_id]["spouses"].append(person_id)
+            
+            # Xử lý quan hệ bố con
+            if "father" in rels:
+                father_id = rels["father"]
+                # Đảm bảo father_id tồn tại trong rels_dict
+                if father_id not in rels_dict:
+                    rels_dict[father_id] = defaultdict(list)
+                
+                # Nếu bố không có con này, thêm vào
+                if "children" not in rels_dict[father_id]:
+                    rels_dict[father_id]["children"] = []
+                if person_id not in rels_dict[father_id]["children"]:
+                    rels_dict[father_id]["children"].append(person_id)
+            
+            # Xử lý quan hệ mẹ con
+            if "mother" in rels:
+                mother_id = rels["mother"]
+                # Đảm bảo mother_id tồn tại trong rels_dict
+                if mother_id not in rels_dict:
+                    rels_dict[mother_id] = defaultdict(list)
+                
+                # Nếu mẹ không có con này, thêm vào
+                if "children" not in rels_dict[mother_id]:
+                    rels_dict[mother_id]["children"] = []
+                if person_id not in rels_dict[mother_id]["children"]:
+                    rels_dict[mother_id]["children"].append(person_id)
+            
+            # Xử lý quan hệ con - cha/mẹ (ngược lại)
+            if "children" in rels:
+                for child_id in rels["children"]:
+                    # Đảm bảo child_id tồn tại trong rels_dict
+                    if child_id not in rels_dict:
+                        rels_dict[child_id] = defaultdict(list)
+                    
+                    # Xác định giới tính để biết là father hay mother
+                    parent_gender = gender_map.get(person_id, "")
+                    
+                    if parent_gender in ["M", "MALE", "NAM"]:
+                        # Đây là bố
+                        if "father" not in rels_dict[child_id]:
+                            rels_dict[child_id]["father"] = person_id
+                    elif parent_gender in ["F", "FEMALE", "NỮ"]:
+                        # Đây là mẹ  
+                        if "mother" not in rels_dict[child_id]:
+                            rels_dict[child_id]["mother"] = person_id
+    
+    # Bổ sung quan hệ đối xứng
+    print("🔄 Đang bổ sung các quan hệ đối xứng...")
+    original_count = sum(len(rels) for rels in rels_dict.values())
+    add_symmetric_relationships(rels_dict, df_data)
+    final_count = sum(len(rels) for rels in rels_dict.values())
+    print(f"✅ Đã bổ sung {final_count - original_count} quan hệ đối xứng")
+
     # Hàm xử lý boolean
     def to_bool(val):
         return bool(val) if pd.notna(val) else False
