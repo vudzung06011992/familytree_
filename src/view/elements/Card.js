@@ -2,11 +2,18 @@ import d3 from "../../d3.js"
 import {appendTemplate, CardBodyOutline} from "./Card.templates.js"
 import cardElements, {appendElement} from "./Card.elements.js"
 import setupCardSvgDefs from "./Card.defs.js"
+import {createSidebar, showSidebar, hideSidebar} from "./Tooltip.js"
 
 
 export function Card(props) {
   props = setupProps(props);
   setupCardSvgDefs(props.svg, props.card_dim)
+  
+  // Create sidebar once
+  let sidebar = d3.select('#family-sidebar');
+  if (sidebar.empty()) {
+    sidebar = createSidebar();
+  }
 
   return function (d) {
     const gender_class = d.data.data.gender === 'M' ? 'card-male' : d.data.data.gender === 'F' ? 'card-female' : 'card-genderless'
@@ -20,6 +27,17 @@ export function Card(props) {
 
     appendTemplate(CardBodyOutline({d,card_dim,is_new:d.data.to_add}).template, card.node(), true)
     appendElement(cardElements.cardBody(d, props), this.querySelector('.card-inner'))
+
+    // Add sidebar event handlers to all rect elements in the card
+    const cardElement = d3.select(this);
+    cardElement.selectAll('rect')
+      .on('click', function(event) {
+        // Check if Ctrl key is pressed
+        if (event.ctrlKey) {
+          event.preventDefault(); // Prevent default click behavior
+          showSidebar(sidebar, d);
+        }
+      });
 
     if (props.img) appendElement(cardElements.cardImage(d, props), this.querySelector('.card'))
     if (props.mini_tree) appendElement(cardElements.miniTree(d, props), this.querySelector('.card'), true)
