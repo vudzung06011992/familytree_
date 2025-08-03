@@ -38,6 +38,25 @@ export function createLinks({d, tree, is_horizontal=false}) {
     d.children.forEach((child, i) => {
       const other_parent = otherParent(child, d) || d
       const sx = other_parent.sx
+      
+      // Check if child is truly shared between current parent and their spouse
+      const currentParentId = d.data.id
+      const hasSpouse = other_parent !== d
+      
+      let isSharedChild = false
+      if (hasSpouse) {
+        const spouseId = other_parent.data.id
+        const childFather = child.data.rels.father
+        const childMother = child.data.rels.mother
+        
+        // Child is shared if both current parent and spouse are the child's parents
+        isSharedChild = (childFather && childMother) && 
+                       ((currentParentId === childFather && spouseId === childMother) ||
+                        (currentParentId === childMother && spouseId === childFather))
+      }
+      
+      // Set stroke dash based on child type
+      const strokeDasharray = isSharedChild ? "none" : "5,5"  // Shared child: solid line, Single parent: dashed line
 
       const parent_pos = !is_horizontal ? {x: sx, y: d.y} : {x: d.x, y: sx}
       links.push({
@@ -48,7 +67,8 @@ export function createLinks({d, tree, is_horizontal=false}) {
         depth: d.depth+1,
         is_ancestry: false,
         source: [d, other_parent],
-        target: child
+        target: child,
+        strokeDasharray: strokeDasharray  // Add dash pattern property
       })
     })
   }

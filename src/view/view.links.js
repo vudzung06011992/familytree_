@@ -20,13 +20,20 @@ export default function updateLinks(svg, tree, props={}) {
   link_update.each(linkUpdate)
 
   function linkEnter(d) {
+    // Use stroke dash pattern from link data
+    const strokeDasharray = d.strokeDasharray || "none"
     d3.select(this).attr("fill", "none").attr("stroke", "#fff").attr("stroke-width", 3)
       .attr("stroke-linecap", "square").attr("stroke-linejoin", "miter")
+      .attr("stroke-dasharray", strokeDasharray)
       .style("opacity", 0).attr("d", createPath(d, true))
   }
 
   function linkUpdate(d) {
     const path = d3.select(this);
+    // Update stroke dash pattern in case it changed
+    const strokeDasharray = d.strokeDasharray || "none"
+    path.attr("stroke-dasharray", strokeDasharray)
+    
     const delay = props.initial ? calculateDelay(tree, d, props.transition_time) : 0
     path.transition('path').duration(props.transition_time).delay(delay).attr("d", createPath(d)).style("opacity", 1)
   }
