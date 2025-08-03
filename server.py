@@ -6,15 +6,9 @@ from flask_cors import CORS  # Cho phép gọi từ HTML JS
 import sys
 import os
 
-# Railway Cloud Compatibility: Optional tkinter import for GUI-less environments
-try:
-    import tkinter as tk
-    from tkinter import messagebox
-    HAS_GUI = True
-    print("🖥️ GUI available (local development mode)")
-except ImportError:
-    HAS_GUI = False
-    print("☁️ GUI not available (cloud environment) - using console logging instead")
+# Cloud-first deployment: Console logging only (no GUI dependencies)
+HAS_GUI = False
+print("☁️ Console-only mode - optimized for cloud deployment")
 
 app = Flask(__name__)
 # Cấu hình CORS - cho phép tất cả origins cho development
@@ -39,39 +33,17 @@ def after_request(response):
 
 def show_error_and_stop(error_message):
     """
-    Hiển thị lỗi chi tiết - GUI cho local, console cho cloud
+    Hiển thị lỗi chi tiết - Console only (cloud-optimized)
     """
     print(f"❌ CRITICAL ERROR: {error_message}")
     
-    # Chỉ hiển thị popup nếu có GUI (local development)
-    if HAS_GUI:
-        try:
-            root = tk.Tk()
-            root.withdraw()  # Ẩn main window
-            root.attributes('-topmost', True)  # Luôn hiện trên top
-            
-            # Tạo title và message chi tiết
-            title = "Family Tree Server - Lỗi Dữ Liệu"
-            detailed_message = f"""
-❌ PHÁT HIỆN LỖI TRONG DỮ LIỆU EXCEL:
-
-{error_message}
-
-⚠️ LƯU Ý: Server vẫn đang chạy, có thể upload lại sau khi sửa.
-            """
-            
-            messagebox.showerror(title, detailed_message)
-            root.destroy()
-            
-        except Exception as e:
-            print(f"❌ Không thể hiện popup: {e}")
-    
-    # Luôn log ra console (cho cả local và cloud)
+    # Console logging cho cloud deployment
     print("=" * 80)
     print("📋 CHI TIẾT LỖI:")
     print("-" * 80)
     print(error_message)
     print("-" * 80)
+    print("⚠️ LƯU Ý: Server vẫn đang chạy, có thể upload lại sau khi sửa.")
     print("=" * 80)
     
     return True  # Indicate error occurred
