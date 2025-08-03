@@ -10,10 +10,19 @@
   
   <!-- CSS compact header for ngrok deployment -->
   <style>
+    /* Body background */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    
     /* Compact header - bao khít nhưng giữ 2 dòng riêng biệt */
     body > div:first-of-type {
       padding: 4px 10px !important;     /* Minimal padding */
-      background: #222 !important;
+      background: rgba(34, 34, 34, 0.9) !important;
       text-align: center !important;
     }
     
@@ -31,6 +40,15 @@
       margin: 3px 0 0 0 !important;     /* Chỉ có margin top nhỏ */
       font-size: 11px !important;       /* Nhỏ font */
       line-height: 1 !important;        /* Không line height thừa */
+    }
+    
+    /* Chart container background */
+    #FamilyChart {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      padding: 20px;
     }
   </style>
 </head>
