@@ -6,14 +6,15 @@ from flask_cors import CORS  # Cho phép gọi từ HTML JS
 import sys
 import os
 
-# Chỉ import tkinter nếu có (local development)
+# Railway Cloud Compatibility: Optional tkinter import for GUI-less environments
 try:
     import tkinter as tk
     from tkinter import messagebox
     HAS_GUI = True
+    print("🖥️ GUI available (local development mode)")
 except ImportError:
     HAS_GUI = False
-    print("📝 GUI not available (cloud environment) - using console logging instead")
+    print("☁️ GUI not available (cloud environment) - using console logging instead")
 
 app = Flask(__name__)
 # Cấu hình CORS - cho phép tất cả origins cho development
