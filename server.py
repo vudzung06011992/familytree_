@@ -3,9 +3,17 @@ import pandas as pd
 import json
 from collections import defaultdict
 from flask_cors import CORS  # Cho phép gọi từ HTML JS
-import tkinter as tk
-from tkinter import messagebox
 import sys
+import os
+
+# Chỉ import tkinter nếu có (local development)
+try:
+    import tkinter as tk
+    from tkinter import messagebox
+    HAS_GUI = True
+except ImportError:
+    HAS_GUI = False
+    print("📝 GUI not available (cloud environment) - using console logging instead")
 
 app = Flask(__name__)
 # Cấu hình CORS - cho phép tất cả origins cho development
@@ -30,32 +38,40 @@ def after_request(response):
 
 def show_error_and_stop(error_message):
     """
-    Hiển thị lỗi chi tiết trong popup window
+    Hiển thị lỗi chi tiết - GUI cho local, console cho cloud
     """
     print(f"❌ CRITICAL ERROR: {error_message}")
     
-    # Tạo popup window với thông tin chi tiết hơn
-    try:
-        root = tk.Tk()
-        root.withdraw()  # Ẩn main window
-        root.attributes('-topmost', True)  # Luôn hiện trên top
-        
-        # Tạo title và message chi tiết
-        title = "Family Tree Server - Lỗi Dữ Liệu"
-        detailed_message = f"""
+    # Chỉ hiển thị popup nếu có GUI (local development)
+    if HAS_GUI:
+        try:
+            root = tk.Tk()
+            root.withdraw()  # Ẩn main window
+            root.attributes('-topmost', True)  # Luôn hiện trên top
+            
+            # Tạo title và message chi tiết
+            title = "Family Tree Server - Lỗi Dữ Liệu"
+            detailed_message = f"""
 ❌ PHÁT HIỆN LỖI TRONG DỮ LIỆU EXCEL:
 
 {error_message}
 
 ⚠️ LƯU Ý: Server vẫn đang chạy, có thể upload lại sau khi sửa.
-        """
-        
-        messagebox.showerror(title, detailed_message)
-        root.destroy()
-        
-    except Exception as e:
-        print(f"❌ Không thể hiện popup: {e}")
-        print(f"📋 CHI TIẾT LỖI: {error_message}")
+            """
+            
+            messagebox.showerror(title, detailed_message)
+            root.destroy()
+            
+        except Exception as e:
+            print(f"❌ Không thể hiện popup: {e}")
+    
+    # Luôn log ra console (cho cả local và cloud)
+    print("=" * 80)
+    print("📋 CHI TIẾT LỖI:")
+    print("-" * 80)
+    print(error_message)
+    print("-" * 80)
+    print("=" * 80)
     
     return True  # Indicate error occurred
 
@@ -74,62 +90,6 @@ Người con ID {child_id} có 2 {parent_name}: ID {existing_parent_id} và ID {
     """
     
     show_error_and_stop(error_message)
-import sys
-
-app = Flask(__name__)
-CORS(app, origins=["http://localhost:8000", "http://127.0.0.1:8000"])  # Cho phép cả localhost và 127.0.0.1
-import os 
-
-def show_error_and_stop(error_message):
-    """
-    Hiển thị lỗi chi tiết trong popup window
-    """
-    print(f"❌ CRITICAL ERROR: {error_message}")
-    
-    # Tạo popup window với thông tin chi tiết hơn
-    try:
-        root = tk.Tk()
-        root.withdraw()  # Ẩn main window
-        root.attributes('-topmost', True)  # Luôn hiện trên top
-        
-        # Tạo title và message chi tiết
-        title = "Family Tree Server - Lỗi Dữ Liệu"
-        detailed_message = f"""
-❌ PHÁT HIỆN LỖI TRONG DỮ LIỆU EXCEL:
-
-{error_message}
-
-⚠️ LƯU Ý: Server vẫn đang chạy, có thể upload lại sau khi sửa.
-        """
-        
-        messagebox.showerror(title, detailed_message)
-        root.destroy()
-        
-    except Exception as e:
-        print(f"❌ Không thể hiện popup: {e}")
-        print(f"📋 CHI TIẾT LỖI: {error_message}")
-    
-    return True  # Indicate error occurred
-
-def show_biological_parent_error(child_id, parent_type, existing_parent_id, new_parent_id):
-    """
-    Hiển thị lỗi cụ thể cho biological parent conflicts
-    """
-    parent_name = "bố ruột" if parent_type == "father" else "mẹ ruột"
-    role_id = "3" if parent_type == "father" else "4"
-    error_message = f"""
-⚠️ XUNG ĐỘT QUAN HỆ {parent_name.upper()}:
-Người con ID {child_id} có 2 {parent_name}: ID {existing_parent_id} và ID {new_parent_id}
-
-� CÁCH SỬA:
-1. Mở sheet 'Relationship' trong Excel
-2. Tìm dòng mô tả quan hệ giữa (i) ID {child_id} và ID {existing_parent_id}; (i) ID {child_id} và ID {new_parent_id}; 
-3. Quyết định:
-   • Sửa role_id 
-   • Hoặc xóa dòng xung đột
-    """
-    
-    show_error_and_stop(error_message) 
 
 def write_output_file(data, is_error=False):
     """
