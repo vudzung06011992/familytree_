@@ -43,52 +43,20 @@ function createFamilyTree(data = null) {
                               ],
         mini_tree: true,
         link_break: false
-      }),
-      // Initialize handlers for click events and sidebar
-      cardHandlers = f3.handlers.cardMethods(store);
+      });
 
-    // Enable interactive features
+    // Simple interactive features - focus only on tree functionality
     store.setOnUpdate(props => {
       f3.view(store.getTree(), svg, Card, props || {});
       
-      // Bind click events to cards after rendering
-      svg.selectAll('.card').on('click', (event, d) => {
-        // Focus on clicked person
-        store.updateTree({tree_position: d.id});
-        
-        // Show person info in sidebar
-        showPersonInfo(d);
-      });
-    });
-    
-    // Sidebar functionality
-    function showPersonInfo(person) {
-      const sidebar = document.getElementById('sidebar');
-      const personInfo = document.getElementById('person-info');
-      
-      // Populate person info
-      const data = person.data;
-      const fullName = `${data["first name"] || ''} ${data["last name"] || ''}`.trim();
-      
-      personInfo.innerHTML = `
-        <h4>${fullName}</h4>
-        <p><strong>Năm sinh:</strong> ${data["birthday"] || 'Không rõ'}</p>
-        <p><strong>Giới tính:</strong> ${data["gender"] || 'Không rõ'}</p>
-        <p><strong>Quốc tịch:</strong> ${data["nationality"] || 'Không rõ'}</p>
-        <p><strong>Nơi sinh:</strong> ${data["place of birth"] || 'Không rõ'}</p>
-        <p><strong>Nghề nghiệp:</strong> ${data["occupation"] || 'Không rõ'}</p>
-        <p><strong>Đặc điểm:</strong> ${data["characteristics"] || 'Không rõ'}</p>
-        <p><strong>Điện thoại:</strong> ${data["phone"] || 'Không rõ'}</p>
-        <p><strong>Email:</strong> ${data["email"] || 'Không rõ'}</p>
-      `;
-      
-      // Show sidebar
-      sidebar.style.right = '0px';
-    }
-    
-    // Close sidebar functionality
-    document.getElementById('sidebar-close').addEventListener('click', () => {
-      document.getElementById('sidebar').style.right = '-300px';
+      // Simple click handler for tree focus only
+      setTimeout(() => {
+        svg.selectAll('.card').on('click', (event, d) => {
+          console.log('Card clicked:', d.data);
+          // Focus on clicked person
+          store.updateTree({tree_position: d.id});
+        });
+      }, 100);
     });
     
     // Initial render with full interactivity
