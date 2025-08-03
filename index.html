@@ -7,6 +7,32 @@
   <link rel="shortcut icon" type="image/svg" href="./examples/logo.svg">
   <script src="https://unpkg.com/d3@6"></script>
   <link rel="stylesheet" href="./src/styles/family-chart.css">
+  
+  <!-- CSS compact header for ngrok deployment -->
+  <style>
+    /* Compact header - bao khít nhưng giữ 2 dòng riêng biệt */
+    body > div:first-of-type {
+      padding: 4px 10px !important;     /* Minimal padding */
+      background: #222 !important;
+      text-align: center !important;
+    }
+    
+    /* Buttons trên dòng riêng */
+    #selectFileBtn, #loadBtn {
+      padding: 4px 8px !important;      /* Compact buttons */
+      font-size: 12px !important;       
+      margin: 1px 3px !important;       /* Minimal margin */
+      display: inline-block !important;
+    }
+    
+    /* Status text dòng riêng, compact */
+    #status {
+      display: block !important;        /* Dòng riêng biệt */
+      margin: 3px 0 0 0 !important;     /* Chỉ có margin top nhỏ */
+      font-size: 11px !important;       /* Nhỏ font */
+      line-height: 1 !important;        /* Không line height thừa */
+    }
+  </style>
 </head>
 <body>
   
@@ -42,6 +68,22 @@
 
   <!-- Script xử lý upload và vẽ lại cây -->
   <script type="module">
+    // Cấu hình API endpoint - sẽ tự động detect environment
+    const getApiUrl = () => {
+      // Nếu đang chạy với ngrok (tunnel)
+      if (window.location.hostname.includes('ngrok')) {
+        return 'http://127.0.0.1:5000'; // Local server
+      }
+      // Nếu đang chạy local development
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return 'http://127.0.0.1:5000';
+      }
+      // Production - thay YOUR_RAILWAY_URL bằng URL Railway thực tế
+      return 'https://YOUR_RAILWAY_URL.railway.app';
+    };
+
+    const API_BASE = getApiUrl();
+    
     const status = document.getElementById('status');
     const loadBtn = document.getElementById('loadBtn');
     const selectFileBtn = document.getElementById('selectFileBtn');
@@ -69,13 +111,13 @@
 
       try {
         // Upload file Excel lên server
-        await fetch('http://127.0.0.1:5000/upload', {
+        await fetch(`${API_BASE}/upload`, {
           method: 'POST',
           body: formData
         });
 
         // Gọi API để lấy dữ liệu cây đã xử lý
-        const response = await fetch('http://127.0.0.1:5000/api/family');
+        const response = await fetch(`${API_BASE}/api/family`);
         if (!response.ok) throw new Error("Lỗi khi lấy dữ liệu");
 
         const data = await response.json();
@@ -84,26 +126,50 @@
         // Xoá cây hiện tại
         document.getElementById('FamilyChart').innerHTML = '';
 
-        // Remove existing script if any
-        const existingScript = document.querySelector('script[src*="index.js"]');
-        if (existingScript) {
-          existingScript.remove();
-        }
-
-        // Add new script tag to reload the module
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.src = `./index.js?t=${Date.now()}`;
-        script.onload = () => {
-          status.innerText = "Cây gia phả đã được tải thành công!";
+        // Thay vì reload script, gọi function trực tiếp
+        try {
+          // Thử method 1: dynamic import
+          try {
+            const { default: createChart } = await import(`./index.js?t=${Date.now()}`);
+            if (typeof createChart === 'function') {
+              createChart();
+            }
+            status.innerText = "Cây gia phả đã được tải thành công!";
+          } catch (importError) {
+            console.warn('Dynamic import failed, trying fetch method:', importError);
+            
+            // Method 2: Fetch và eval (fallback cho ngrok)
+            const response = await fetch(`./index.js?t=${Date.now()}`);
+            const jsCode = await response.text();
+            
+            // Create a script blob với đúng MIME type
+            const blob = new Blob([jsCode], { type: 'application/javascript' });
+            const scriptUrl = URL.createObjectURL(blob);
+            
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = scriptUrl;
+            
+            script.onload = () => {
+              status.innerText = "Cây gia phả đã được tải thành công!";
+              URL.revokeObjectURL(scriptUrl); // Clean up
+            };
+            
+            script.onerror = (err) => {
+              console.error('Script blob failed:', err);
+              status.innerText = "❌ Lỗi khi tải script.";
+              URL.revokeObjectURL(scriptUrl);
+            };
+            
+            document.head.appendChild(script);
+          }
+          
           status.style.fontFamily = "Arial";
-          status.style.fontSize = "12px"; // hoặc "smaller", "0.9em", v.v.
-        };
-        script.onerror = (err) => {
+          status.style.fontSize = "12px";
+        } catch (err) {
           console.error('❌ Lỗi khi tải script:', err);
-          status.innerText = "❌ Lỗi khi tải script.";
-        };
-        document.head.appendChild(script);
+          status.innerText = "❌ Lỗi khi tải script: " + err.message;
+        }
 
       } catch (error) {
         console.error('❌ Lỗi:', error);

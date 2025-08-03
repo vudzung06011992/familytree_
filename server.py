@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 import pandas as pd
 import json
 from collections import defaultdict
@@ -8,8 +8,25 @@ from tkinter import messagebox
 import sys
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:8000", "http://127.0.0.1:8000"])  # Cho phép cả localhost và 127.0.0.1
+# Cấu hình CORS - cho phép tất cả origins cho development
+CORS(app, 
+     origins="*",  # Allow all origins for development
+     allow_headers=["Content-Type", "Authorization"],
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+)
 import os 
+
+def add_cors_headers(response):
+    """Thêm CORS headers manually"""
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    return response
+
+@app.after_request
+def after_request(response):
+    """Thêm CORS headers cho tất cả responses"""
+    return add_cors_headers(response) 
 
 def show_error_and_stop(error_message):
     """
@@ -130,25 +147,38 @@ def write_output_file(data, is_error=False):
         print(f"❌ Lỗi khi ghi file {filename}: {str(e)}")
         return False
 
-@app.route("/upload", methods=["POST"])
+@app.route("/upload", methods=["POST", "OPTIONS"])
 def upload_file():
+    # Handle preflight requests
+    if request.method == "OPTIONS":
+        response = make_response()
+        return add_cors_headers(response)
+        
     if 'file' not in request.files:
         error_data = {"error": "No file provided"}
         write_output_file(error_data, is_error=True)
-        return jsonify(error_data)
+        response = make_response(jsonify(error_data))
+        return add_cors_headers(response)
     
     file = request.files['file']
     if file.filename == '':
         error_data = {"error": "No file selected"}
         write_output_file(error_data, is_error=True)
-        return jsonify(error_data)
+        response = make_response(jsonify(error_data))
+        return add_cors_headers(response)
     
     # Lưu file upload
     file.save('Thong tin gia dinh.xlsm')
-    return jsonify({"message": "File uploaded successfully"}), 200
+    response = make_response(jsonify({"message": "File uploaded successfully"}), 200)
+    return add_cors_headers(response)
 
-@app.route("/api/family", methods=["GET"])
+@app.route("/api/family", methods=["GET", "OPTIONS"])
 def get_family_data():
+    # Handle preflight requests
+    if request.method == "OPTIONS":
+        response = make_response()
+        return add_cors_headers(response)
+        
     file_path = os.path.join(os.path.dirname(__file__), 'Thong tin gia dinh.xlsm')
     print(f"📁 Reading file: {file_path}")
     
@@ -444,10 +474,15 @@ def get_family_data():
 
     print("🔄 Đang return JSON response...")
     try:
-        return jsonify(people_cleaned)
+        response = make_response(jsonify(people_cleaned))
+        return add_cors_headers(response)
     except Exception as e:
         print(f"❌ Error creating JSON response: {str(e)}")
         show_error_and_stop(f"Error creating JSON response: {str(e)}")
+        error_response = make_response(jsonify({"error": str(e)}))
+        return add_cors_headers(error_response)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Sử dụng port từ environment variable cho production, fallback về 5000
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host="0.0.0.0", port=port)
