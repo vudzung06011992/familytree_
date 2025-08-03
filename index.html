@@ -52,6 +52,21 @@
       padding: 20px;
     }
     */
+    
+    /* Zoom level indicator */
+    #zoom-indicator {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      z-index: 1000;
+      display: none;
+      font-family: Arial, sans-serif;
+    }
   </style>
 </head>
 <body>
@@ -86,6 +101,9 @@
             z-index: 1;
             pointer-events: auto;">
   </div>
+
+  <!-- Zoom level indicator -->
+  <div id="zoom-indicator">Zoom: 100%</div>
 
   <!-- Simplified sidebar - hidden by default -->
   <div id="sidebar" style="display: none;">

@@ -18,6 +18,9 @@ function createFamilyTree(data = null) {
       return;
     }
 
+    // Hook into family-chart zoom behavior and add constraints
+    const originalCreateSvg = f3.createSvg;
+    
     const store = f3.createStore({
         data: familyData,
         node_separation: 250,
@@ -48,12 +51,58 @@ function createFamilyTree(data = null) {
         link_break: false
       });
 
-    // Interactive features with proper event binding
+    // Interactive features with zoom constraints  
     store.setOnUpdate(props => {
       console.log('Store updated, rendering view...');
       f3.view(store.getTree(), svg, Card, props || {});
       
-      // Bind click events after view is rendered
+      // Apply zoom constraints to the existing zoom behavior
+      setTimeout(() => {
+        const container = document.querySelector('#FamilyChart #f3Canvas');
+        if (container && container.__zoomObj) {
+          // Modify existing zoom behavior to add scale constraints
+          const existingZoom = container.__zoomObj;
+          
+          // Set scale extent (zoom limits)
+          existingZoom.scaleExtent([0.5, 2.0]);
+          
+          // Override zoom event handler to add zoom indicator
+          const originalZoomFn = existingZoom.on('zoom');
+          existingZoom.on('zoom', function(event) {
+            // Call original zoom function first
+            if (originalZoomFn) originalZoomFn.call(this, event);
+            
+            // Update zoom indicator
+            const transform = event.transform;
+            const scale = transform.k;
+            const indicator = document.getElementById('zoom-indicator');
+            
+            if (indicator) {
+              indicator.style.display = 'block';
+              indicator.textContent = `Zoom: ${Math.round(scale * 100)}%`;
+              
+              if (scale <= 0.5) {
+                indicator.textContent = 'Zoom: 50% (Min)';
+                indicator.style.background = 'rgba(255, 100, 100, 0.9)';
+              } else if (scale >= 2.0) {
+                indicator.textContent = 'Zoom: 200% (Max)';
+                indicator.style.background = 'rgba(255, 100, 100, 0.9)';
+              } else {
+                indicator.style.background = 'rgba(0, 0, 0, 0.7)';
+              }
+              
+              clearTimeout(window.zoomTimeout);
+              window.zoomTimeout = setTimeout(() => {
+                indicator.style.display = 'none';
+              }, 2000);
+            }
+          });
+          
+          console.log('Zoom constraints applied: 0.5x to 2.0x');
+        }
+      }, 100);
+      
+      // Bind click events after view update
       setTimeout(() => {
         // Try multiple selectors to find cards
         const cards = svg.selectAll('.card, .card-main, .person-card, [data-card]');
@@ -94,12 +143,8 @@ function createFamilyTree(data = null) {
       }, 300);
     });
     
-    // Initial render with full interactivity and centering
-    store.updateTree({
-      initial: true,
-      tree_position: null, // Auto-center on first person
-      transition_time: 0    // No transition on initial load
-    });
+    // Initial render with full interactivity
+    store.updateTree({initial: true});
   }).catch(err => {
     console.error('Error loading family data:', err);
   });
