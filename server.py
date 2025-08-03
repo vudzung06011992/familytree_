@@ -133,15 +133,19 @@ Người con ID {child_id} có 2 {parent_name}: ID {existing_parent_id} và ID {
 
 def write_output_file(data, is_error=False):
     """
-    Hàm helper để ghi file JSON output
-    - Nếu is_error=True: ghi file với format error
-    - Nếu is_error=False: ghi file với dữ liệu bình thường
+    Hàm helper để ghi file JSON output - DEPRECATED for cloud deployment
+    Chỉ dùng cho local development
+    - Cloud deployment sẽ return data trực tiếp qua API
     """
     filename = "family_people_list.json"
     try:
-        with open(filename, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-        print(f"✅ Đã ghi file {filename}")
+        # Chỉ ghi file nếu đang chạy local (có thể ghi file)
+        if os.path.exists('.') and os.access('.', os.W_OK):
+            with open(filename, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+            print(f"✅ Đã ghi file {filename} (local only)")
+        else:
+            print(f"📝 Skipped file write {filename} (cloud environment)")
         return True
     except Exception as e:
         print(f"❌ Lỗi khi ghi file {filename}: {str(e)}")

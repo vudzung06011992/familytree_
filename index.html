@@ -70,6 +70,10 @@
   <script type="module">
     // Cấu hình API endpoint - sẽ tự động detect environment
     const getApiUrl = () => {
+      // Production trên Vercel
+      if (window.location.hostname.includes('vercel.app')) {
+        return 'https://familytree-production-xxxx.up.railway.app'; // Thay xxxx bằng Railway URL thực tế
+      }
       // Nếu đang chạy với ngrok (tunnel)
       if (window.location.hostname.includes('ngrok')) {
         return 'http://127.0.0.1:5000'; // Local server
@@ -78,8 +82,8 @@
       if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         return 'http://127.0.0.1:5000';
       }
-      // Production - thay YOUR_RAILWAY_URL bằng URL Railway thực tế
-      return 'https://YOUR_RAILWAY_URL.railway.app';
+      // Fallback production
+      return 'https://familytree-production-xxxx.up.railway.app'; // Thay xxxx bằng Railway URL thực tế
     };
 
     const API_BASE = getApiUrl();
@@ -121,18 +125,17 @@
         if (!response.ok) throw new Error("Lỗi khi lấy dữ liệu");
 
         const data = await response.json();
-        window.familyData = data;
-
+        
         // Xoá cây hiện tại
         document.getElementById('FamilyChart').innerHTML = '';
 
-        // Thay vì reload script, gọi function trực tiếp
+        // Thay vì reload script, gọi function trực tiếp với data
         try {
           // Thử method 1: dynamic import
           try {
             const { default: createChart } = await import(`./index.js?t=${Date.now()}`);
             if (typeof createChart === 'function') {
-              createChart();
+              createChart(data); // Truyền data trực tiếp
             }
             status.innerText = "Cây gia phả đã được tải thành công!";
           } catch (importError) {

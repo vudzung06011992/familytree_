@@ -1,9 +1,22 @@
 import f3 from './index_support.js'
 
-function createFamilyTree() {
-  fetch("./family_people_list.json").then(r => r.json()).then(data => {
+function createFamilyTree(data = null) {
+  // Sử dụng data được truyền vào, hoặc từ global variable, hoặc từ file
+  const getData = () => {
+    if (data) return Promise.resolve(data);
+    if (window.familyData) return Promise.resolve(window.familyData);
+    // Fallback: thử load từ file (chỉ hoạt động local)
+    return fetch("./family_people_list.json").then(r => r.json()).catch(() => []);
+  };
+
+  getData().then(familyData => {
+    if (!familyData || familyData.length === 0) {
+      console.warn('No family data available');
+      return;
+    }
+
     const store = f3.createStore({
-        data,
+        data: familyData,
         node_separation: 250,
         level_separation: 180,
         single_parent_empty_card: false
@@ -34,13 +47,15 @@ function createFamilyTree() {
 
     store.setOnUpdate(props => f3.view(store.getTree(), svg, Card, props || {}))
     store.updateTree({initial: true})
-  })
+  }).catch(err => {
+    console.error('Error loading family data:', err);
+  });
 }
 
 // Export default function
 export default createFamilyTree;
 
-// Auto-run if not imported
+// Auto-run if not imported (với data từ file)
 if (import.meta.url === window.location.href) {
   createFamilyTree();
 }
