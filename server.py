@@ -26,36 +26,15 @@ def show_error_and_stop(error_message):
         # Tạo title và message chi tiết
         title = "Family Tree Server - Lỗi Dữ Liệu"
         detailed_message = f"""
-🚨 PHÁT HIỆN LỖI TRONG DỮ LIỆU EXCEL:
+❌ PHÁT HIỆN LỖI TRONG DỮ LIỆU EXCEL:
 
 {error_message}
-
-📋 HƯỚNG DẪN XỬ LÝ:
-1. Mở file Excel 'Thong tin gia dinh.xlsm'
-2. Kiểm tra sheet 'Relationship' 
-3. Tìm các ID được đề cập trong lỗi
-4. Sửa quan hệ bố mẹ ruột (role_id 3, 4)
-5. Đảm bảo mỗi người chỉ có 1 bố ruột và 1 mẹ ruột
-6. Lưu file và thử lại
 
 ⚠️ LƯU Ý: Server vẫn đang chạy, có thể upload lại sau khi sửa.
         """
         
         messagebox.showerror(title, detailed_message)
         root.destroy()
-        
-        # Log chi tiết vào console
-        print("=" * 80)
-        print("📋 CHI TIẾT LỖI:")
-        print("-" * 80)
-        print(error_message)
-        print("-" * 80)
-        print("🔧 CÁCH SỬA:")
-        print("1. Mở Excel file")
-        print("2. Kiểm tra sheet 'Relationship'")
-        print("3. Sửa quan hệ bố mẹ ruột")
-        print("4. Upload lại")
-        print("=" * 80)
         
     except Exception as e:
         print(f"❌ Không thể hiện popup: {e}")
@@ -69,29 +48,68 @@ def show_biological_parent_error(child_id, parent_type, existing_parent_id, new_
     """
     parent_name = "bố ruột" if parent_type == "father" else "mẹ ruột"
     error_message = f"""
-🚨 XUNG ĐỘT QUAN HỆ BỐ MẸ RUỘT:
+⚠️ XUNG ĐỘT QUAN HỆ {parent_name.upper()}:
+Người con ID {child_id} có 2 {parent_name}: ID {existing_parent_id} và ID {new_parent_id}
 
-• Người con: ID {child_id}
-• Loại quan hệ: {parent_name}
-• {parent_name.capitalize()} hiện tại: ID {existing_parent_id}
-• {parent_name.capitalize()} mới (xung đột): ID {new_parent_id}
+🛠 CÁCH SỬA:
+1. Mở sheet 'Relationship' trong Excel
+2. Sửa/Xóa dòng xung đột
+    """
+    
+    show_error_and_stop(error_message)
+import sys
 
-❌ VẤN ĐỀ: Một người chỉ có thể có 1 {parent_name} duy nhất.
+app = Flask(__name__)
+CORS(app, origins=["http://localhost:8000", "http://127.0.0.1:8000"])  # Cho phép cả localhost và 127.0.0.1
+import os 
 
-📋 CÁCH SỬA TRONG EXCEL:
-1. Mở sheet 'Relationship'
-2. Tìm các dòng có:
-   - entity_id_1 = {new_parent_id} và entity_id_2 = {child_id}
-   - entity_id_1 = {child_id} và entity_id_2 = {new_parent_id}
-3. Kiểm tra role_id:
-   - role_id = 3: Bố ruột
-   - role_id = 4: Mẹ ruột
-4. Quyết định giữ quan hệ nào:
-   - Giữ quan hệ với ID {existing_parent_id} (hiện tại)
-   - Hoặc sửa thành quan hệ khác (bố nuôi: role_id 7, mẹ nuôi: role_id 8)
-5. Xóa hoặc sửa quan hệ xung đột với ID {new_parent_id}
+def show_error_and_stop(error_message):
+    """
+    Hiển thị lỗi chi tiết trong popup window
+    """
+    print(f"❌ CRITICAL ERROR: {error_message}")
+    
+    # Tạo popup window với thông tin chi tiết hơn
+    try:
+        root = tk.Tk()
+        root.withdraw()  # Ẩn main window
+        root.attributes('-topmost', True)  # Luôn hiện trên top
+        
+        # Tạo title và message chi tiết
+        title = "Family Tree Server - Lỗi Dữ Liệu"
+        detailed_message = f"""
+❌ PHÁT HIỆN LỖI TRONG DỮ LIỆU EXCEL:
 
-⚠️ CHÚ Ý: Chỉ sửa các quan hệ RUỘT (role_id 3, 4)
+{error_message}
+
+⚠️ LƯU Ý: Server vẫn đang chạy, có thể upload lại sau khi sửa.
+        """
+        
+        messagebox.showerror(title, detailed_message)
+        root.destroy()
+        
+    except Exception as e:
+        print(f"❌ Không thể hiện popup: {e}")
+        print(f"📋 CHI TIẾT LỖI: {error_message}")
+    
+    return True  # Indicate error occurred
+
+def show_biological_parent_error(child_id, parent_type, existing_parent_id, new_parent_id):
+    """
+    Hiển thị lỗi cụ thể cho biological parent conflicts
+    """
+    parent_name = "bố ruột" if parent_type == "father" else "mẹ ruột"
+    role_id = "3" if parent_type == "father" else "4"
+    error_message = f"""
+⚠️ XUNG ĐỘT QUAN HỆ {parent_name.upper()}:
+Người con ID {child_id} có 2 {parent_name}: ID {existing_parent_id} và ID {new_parent_id}
+
+� CÁCH SỬA:
+1. Mở sheet 'Relationship' trong Excel
+2. Tìm dòng mô tả quan hệ giữa (i) ID {child_id} và ID {existing_parent_id}; (i) ID {child_id} và ID {new_parent_id}; 
+3. Quyết định:
+   • Sửa role_id 
+   • Hoặc xóa dòng xung đột
     """
     
     show_error_and_stop(error_message) 
@@ -201,6 +219,7 @@ def get_family_data():
                         error_msg = "Child {} already has a biological father (ID {}). Cannot assign multiple fathers. New conflicting father: ID {}".format(id2, existing_father, id1)
                         return jsonify({"error": error_msg})
                     rels_dict[id2]["father"] = id1
+
                 elif role1 in BIOLOGICAL_MOTHER_ROLE and role2 in BIOLOGICAL_CHILD_ROLES:
                     if "mother" in rels_dict[id2] and rels_dict[id2]["mother"] != id1:
                         existing_mother = rels_dict[id2]["mother"]
@@ -231,8 +250,8 @@ def get_family_data():
                     rels_dict[id1]["mother"] = id2
 
             else:
-                print(f"❌ Invalid relationship: {id1}({role1}) -> {id2}({role2}), type={rel_type}")
-                error_msg = "Invalid relationship roles for relationship of id1: {}, id2: {}, role1: {}, role2: {}, rel_type: {}".format(id1, id2, role1, role2, rel_type)
+                print(f"❌ Quan hệ giữa 02 ID sau chưa chính xác: Invalid relationship: {id1}({role1}) -> {id2}({role2}), type={rel_type}")
+                error_msg = "Quan hệ giữa 02 ID sau chưa chính xác: Invalid relationship roles for relationship of id1: {}, id2: {}, role1: {}, role2: {}, rel_type: {}".format(id1, id2, role1, role2, rel_type)
                 show_error_and_stop(error_msg)
                 return jsonify({"error": error_msg})
 
