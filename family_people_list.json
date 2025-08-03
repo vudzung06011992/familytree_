@@ -4,16 +4,18 @@
     "rels": {
       "children": [
         "1",
-        "3",
         "5",
-        "7",
-        "9"
+        "9",
+        "10"
+      ],
+      "spouses": [
+        "21"
       ]
     },
     "data": {
-      "first name": "Nguyễn",
-      "middle name": "Văn",
-      "last name": "Lợi",
+      "first name": 0,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1930",
@@ -50,9 +52,9 @@
       ]
     },
     "data": {
-      "first name": "Phạm",
-      "middle name": "Hữu",
-      "last name": "Nam",
+      "first name": 1,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1991",
@@ -88,9 +90,9 @@
       ]
     },
     "data": {
-      "first name": "Võ",
-      "middle name": "Thị",
-      "last name": "Lan",
+      "first name": 2,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "F",
       "birthday": "1963",
@@ -117,7 +119,6 @@
   {
     "id": "3",
     "rels": {
-      "father": "0",
       "spouses": [
         "4"
       ],
@@ -127,9 +128,9 @@
       ]
     },
     "data": {
-      "first name": "Lê",
-      "middle name": "Ngọc",
-      "last name": "Hương",
+      "first name": 3,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "F",
       "birthday": "1951",
@@ -165,9 +166,9 @@
       ]
     },
     "data": {
-      "first name": "Lê",
-      "middle name": "Công",
-      "last name": "Quân",
+      "first name": 4,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1998",
@@ -194,15 +195,16 @@
   {
     "id": "5",
     "rels": {
-      "father": "0",
+      "father": "21",
+      "mother": "0",
       "spouses": [
         "6"
       ]
     },
     "data": {
-      "first name": "Lê",
-      "middle name": "Ngọc",
-      "last name": "Nam",
+      "first name": 5,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1958",
@@ -234,9 +236,9 @@
       ]
     },
     "data": {
-      "first name": "Trần",
-      "middle name": "Đức",
-      "last name": "Tú",
+      "first name": 6,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1974",
@@ -263,15 +265,14 @@
   {
     "id": "7",
     "rels": {
-      "father": "0",
       "spouses": [
         "8"
       ]
     },
     "data": {
-      "first name": "Nguyễn",
-      "middle name": "Văn",
-      "last name": "Tú",
+      "first name": 7,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1975",
@@ -303,9 +304,9 @@
       ]
     },
     "data": {
-      "first name": "Nguyễn",
-      "middle name": "Đức",
-      "last name": "Dũng",
+      "first name": 8,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1952",
@@ -338,9 +339,9 @@
       ]
     },
     "data": {
-      "first name": "Trần",
-      "middle name": "Thị",
-      "last name": "Vy",
+      "first name": 9,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "F",
       "birthday": "1994",
@@ -369,12 +370,13 @@
     "rels": {
       "spouses": [
         "9"
-      ]
+      ],
+      "father": "0"
     },
     "data": {
-      "first name": "Lê",
-      "middle name": "Văn",
-      "last name": "Quân",
+      "first name": 10,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "2001",
@@ -412,9 +414,9 @@
       ]
     },
     "data": {
-      "first name": "Lê",
-      "middle name": "Ngọc",
-      "last name": "Vy",
+      "first name": 11,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "F",
       "birthday": "1979",
@@ -450,9 +452,9 @@
       ]
     },
     "data": {
-      "first name": "Lê",
-      "middle name": "Ngọc",
-      "last name": "Vy",
+      "first name": 12,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "F",
       "birthday": "1968",
@@ -486,9 +488,9 @@
       ]
     },
     "data": {
-      "first name": "Võ",
-      "middle name": "Ngọc",
-      "last name": "Trang",
+      "first name": 13,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "F",
       "birthday": "1989",
@@ -520,9 +522,9 @@
       ]
     },
     "data": {
-      "first name": "Trần",
-      "middle name": "Hồng",
-      "last name": "Linh",
+      "first name": 14,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "F",
       "birthday": "1985",
@@ -556,9 +558,9 @@
       ]
     },
     "data": {
-      "first name": "Nguyễn",
-      "middle name": "Thu",
-      "last name": "Trang",
+      "first name": 15,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "F",
       "birthday": "1960",
@@ -590,9 +592,9 @@
       ]
     },
     "data": {
-      "first name": "Nguyễn",
-      "middle name": "Hữu",
-      "last name": "Tú",
+      "first name": 16,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1992",
@@ -626,9 +628,9 @@
       ]
     },
     "data": {
-      "first name": "Phạm",
-      "middle name": "Công",
-      "last name": "Dũng",
+      "first name": 17,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1965",
@@ -660,9 +662,9 @@
       ]
     },
     "data": {
-      "first name": "Nguyễn",
-      "middle name": "Công",
-      "last name": "Dũng",
+      "first name": 18,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1962",
@@ -693,9 +695,9 @@
       "mother": "12"
     },
     "data": {
-      "first name": "Trần",
-      "middle name": "Ngọc",
-      "last name": "Nam",
+      "first name": 19,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1987",
@@ -726,9 +728,47 @@
       "mother": "12"
     },
     "data": {
-      "first name": "Trần",
-      "middle name": "Văn",
-      "last name": "Nam",
+      "first name": 20,
+      "middle name": " ",
+      "last name": " ",
+      "alias": " ",
+      "gender": "M",
+      "birthday": "1997",
+      "avatar": " ",
+      "nationality": "Việt Nam",
+      "place of origin": "Huế",
+      "place of birth": "Huế",
+      "place of residence": "Huế",
+      "is dead": false,
+      "date of death": " ",
+      "place of death": " ",
+      "ethnicity": "Kinh",
+      "educational level": "Thạc sĩ",
+      "is cpv member": false,
+      "occupation": "Công nhân",
+      "career": "Tự do",
+      "characteristics": "Vui vẻ",
+      "phone": 996994253.0,
+      "email": "nam20@outlook.com",
+      "full name": "Trần Văn Nam",
+      "last update": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "id": "21",
+    "rels": {
+      "spouses": [
+        "0"
+      ],
+      "children": [
+        "5",
+        "10"
+      ]
+    },
+    "data": {
+      "first name": 21,
+      "middle name": " ",
+      "last name": " ",
       "alias": " ",
       "gender": "M",
       "birthday": "1997",

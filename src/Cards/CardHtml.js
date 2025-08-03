@@ -70,6 +70,48 @@ CardHtml.prototype.setOnCardClick = function(onCardClick) {
 CardHtml.prototype.onCardClickDefault = function(e, d) {
   this.store.updateMainId(d.data.id)
   this.store.updateTree({})
+  
+  // Center the tree after update
+  setTimeout(() => {
+    this.centerTree()
+  }, 100) // Small delay to ensure tree has updated
+}
+
+CardHtml.prototype.centerTree = function() {
+  const svg = document.querySelector('#FamilyChart svg')
+  if (!svg || !svg.__zoomObj) return
+  
+  const view = svg.querySelector('.view')
+  if (!view) return
+  
+  // Get tree bounds
+  const bbox = view.getBBox()
+  if (bbox.width === 0 || bbox.height === 0) return
+  
+  // Get container dimensions
+  const containerRect = svg.getBoundingClientRect()
+  const containerWidth = containerRect.width
+  const containerHeight = containerRect.height
+  
+  // Calculate scale to fit tree with some padding
+  const padding = 50
+  const scaleX = (containerWidth - padding * 2) / bbox.width
+  const scaleY = (containerHeight - padding * 2) / bbox.height
+  const scale = Math.min(scaleX, scaleY, 1) // Don't zoom in beyond 1x
+  
+  // Calculate center position
+  const centerX = containerWidth / 2
+  const centerY = containerHeight / 2
+  const treeCenterX = bbox.x + bbox.width / 2
+  const treeCenterY = bbox.y + bbox.height / 2
+  
+  // Calculate translation to center the tree
+  const translateX = centerX - treeCenterX * scale
+  const translateY = centerY - treeCenterY * scale
+  
+  // Apply transform
+  const transform = d3.zoomIdentity.translate(translateX, translateY).scale(scale)
+  d3.select(svg).transition().duration(500).call(svg.__zoomObj.transform, transform)
 }
 
 CardHtml.prototype.setStyle = function(style) {

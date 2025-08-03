@@ -50,6 +50,36 @@ export function showSidebar(sidebar, data) {
   const personData = data.data.data;
   const contentContainer = sidebar.select('#sidebar-content');
   
+  // Vietnamese label mapping
+  const labelMapping = {
+    'name': 'Tên',
+    'date of birth': 'Ngày sinh',
+    'gender': 'Giới tính',
+    'occupation': 'Nghề nghiệp',
+    'phone': 'Điện thoại',
+    'email': 'Email',
+    'nationality': 'Quốc tịch',
+    'place of origin': 'Quê quán',
+    'place of birth': 'Nơi sinh',
+    'place of residence': 'Nơi cư trú',
+    'ethnicity': 'Dân tộc',
+    'educational level': 'Trình độ học vấn',
+    'career': 'Sự nghiệp',
+    'characteristics': 'Đặc điểm',
+    'full name': 'Họ và tên',
+    'last update': 'Cập nhật lần cuối',
+    'location': 'Nơi cư trú',
+    'birthday': 'Năm sinh',
+    'first name': 'Tên',
+    'last name': 'Họ'
+  };
+
+  // Function to get Vietnamese label
+  function getVietnameseLabel(key) {
+    const lowerKey = key.toLowerCase();
+    return labelMapping[lowerKey] || (key.charAt(0).toUpperCase() + key.slice(1));
+  }
+  
   // Clear previous content
   contentContainer.html('');
   
@@ -59,16 +89,16 @@ export function showSidebar(sidebar, data) {
     .style('font-size', '22px') // Larger title
     .style('border-bottom', '1px solid #ccc')
     .style('padding-bottom', '10px')
-    .text('Person Information');
+    .text('Thông tin cá nhân');
   
   // Display information in simple format - same line
   const infoItems = [
-    { label: 'Name', value: `${(personData['first name'] || '')} ${(personData['last name'] || '')}`.trim() },
-    { label: 'Date of Birth', value: personData.birthday },
-    { label: 'Gender', value: personData.gender === 'M' ? 'Male' : personData.gender === 'F' ? 'Female' : personData.gender },
-    { label: 'Occupation', value: personData.occupation },
-    { label: 'Location', value: personData.location },
-    { label: 'Phone', value: personData.phone },
+    { label: 'Tên', value: `${(personData['first name'] || '')} ${(personData['last name'] || '')}`.trim() },
+    { label: 'Năm sinh', value: personData.birthday },
+    { label: 'Giới tính', value: personData.gender === 'M' ? 'Nam' : personData.gender === 'F' ? 'Nữ' : personData.gender },
+    { label: 'Nghề nghiệp', value: personData.occupation },
+    { label: 'Nơi cư trú', value: personData.location },
+    { label: 'Điện thoại', value: personData.phone },
     { label: 'Email', value: personData.email }
   ];
   
@@ -83,7 +113,7 @@ export function showSidebar(sidebar, data) {
     }
   });
   
-  // Add any additional fields - single line format
+  // Add any additional fields - single line format with Vietnamese labels
   const displayedFields = ['first name', 'last name', 'birthday', 'gender', 'occupation', 'location', 'phone', 'email'];
   const additionalFields = Object.keys(personData).filter(key => 
     !displayedFields.includes(key) && 
@@ -92,11 +122,12 @@ export function showSidebar(sidebar, data) {
   );
   
   additionalFields.forEach(field => {
+    const vietnameseLabel = getVietnameseLabel(field);
     contentContainer.append('div')
       .style('margin-bottom', '18px') // More spacing
       .style('font-size', '16px') // Larger font
       .style('line-height', '1.4')
-      .html(`<strong>${field.charAt(0).toUpperCase() + field.slice(1)}:</strong> ${personData[field]}`);
+      .html(`<strong>${vietnameseLabel}:</strong> ${personData[field]}`);
   });
   
   // Show message if no data

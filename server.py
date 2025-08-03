@@ -34,9 +34,9 @@ def get_family_data():
 
     # ROLE ID mapping
     SPOUSE_ROLES = {1, 2}           # Vợ, Chồng
-    FATHER_ROLE = 3                 # Bố ruột
-    MOTHER_ROLE = 4                 # Mẹ ruột
-    CHILD_ROLES = {5, 6}            # Con trai ruột, con gái ruột
+    FATHER_ROLE = {3, 7, 15}                # Bố ruột
+    MOTHER_ROLE = {4, 8, 16}                 # Mẹ ruột
+    CHILD_ROLES = {5, 6, 9, 10, 17}            # Con trai ruột, con gái ruột
 
     # Xử lý quan hệ
     for _, row in df_rels.iterrows():
@@ -51,28 +51,30 @@ def get_family_data():
             rels_dict[id1]["spouses"].append(id2)
             rels_dict[id2]["spouses"].append(id1)
 
-        # Bố mẹ ruột - con ruột
+        # Bố mẹ - con
         elif rel_type == 2:
-            if role1 == FATHER_ROLE:
+            if role1 in FATHER_ROLE and role2 in CHILD_ROLES:
                 if "father" not in rels_dict[id2]:
                     rels_dict[id2]["father"] = id1
                 rels_dict[id1]["children"].append(id2)
 
-            elif role1 == MOTHER_ROLE:
+            elif role1 in MOTHER_ROLE and role2 in CHILD_ROLES:
                 if "mother" not in rels_dict[id2]:
                     rels_dict[id2]["mother"] = id1
                 rels_dict[id1]["children"].append(id2)
 
-            elif role1 in CHILD_ROLES:
-                if role2 == FATHER_ROLE:
-                    if "father" not in rels_dict[id1]:
-                        rels_dict[id1]["father"] = id2
-                    rels_dict[id2]["children"].append(id1)
+            elif role1 in CHILD_ROLES and role2 in FATHER_ROLE:
+                if "father" not in rels_dict[id1]:
+                    rels_dict[id1]["father"] = id2
+                rels_dict[id2]["children"].append(id1)
 
-                elif role2 == MOTHER_ROLE:
-                    if "mother" not in rels_dict[id1]:
-                        rels_dict[id1]["mother"] = id2
-                    rels_dict[id2]["children"].append(id1)
+            elif role2 in MOTHER_ROLE and role1 in CHILD_ROLES:
+                if "mother" not in rels_dict[id1]:
+                    rels_dict[id1]["mother"] = id2
+                rels_dict[id2]["children"].append(id1)
+
+            else:
+                return jsonify({"error": "Invalid relationship roles for relationship of id1: {}, id2: {}".format(id1, id2)}), 400
 
     # Hàm bổ sung quan hệ đối xứng
     def add_symmetric_relationships(rels_dict, df_data):
