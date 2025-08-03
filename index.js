@@ -1,5 +1,8 @@
 import f3 from './index_support.js'
 
+// Access d3 from global scope
+const d3 = window.d3;
+
 function createFamilyTree(data = null) {
   // Sử dụng data được truyền vào, hoặc từ global variable, hoặc từ file
   const getData = () => {
@@ -45,22 +48,58 @@ function createFamilyTree(data = null) {
         link_break: false
       });
 
-    // Simple interactive features - focus only on tree functionality
+    // Interactive features with proper event binding
     store.setOnUpdate(props => {
+      console.log('Store updated, rendering view...');
       f3.view(store.getTree(), svg, Card, props || {});
       
-      // Simple click handler for tree focus only
+      // Bind click events after view is rendered
       setTimeout(() => {
-        svg.selectAll('.card').on('click', (event, d) => {
-          console.log('Card clicked:', d.data);
-          // Focus on clicked person
-          store.updateTree({tree_position: d.id});
+        // Try multiple selectors to find cards
+        const cards = svg.selectAll('.card, .card-main, .person-card, [data-card]');
+        console.log('Found cards:', cards.size());
+        
+        // Also check DOM elements
+        const domCards = document.querySelectorAll('#FamilyChart .card, #FamilyChart rect, #FamilyChart g');
+        console.log('DOM cards found:', domCards.length);
+        
+        cards.on('click', function(event, d) {
+          console.log('D3 Card clicked:', d);
+          event.stopPropagation();
+          
+          // Focus on clicked person - use proper data structure
+          if (d && (d.id || d.data)) {
+            const personId = d.id || d.data.id;
+            console.log('Focusing on person:', personId);
+            store.updateTree({tree_position: personId});
+          }
         });
-      }, 100);
+        
+        // Add direct DOM event listeners as backup
+        domCards.forEach((element, index) => {
+          element.addEventListener('click', function(e) {
+            console.log('DOM click handler fired for element', index);
+            e.stopPropagation();
+            
+            // Try to get data from element
+            const d3Data = d3.select(this).datum();
+            console.log('Element data:', d3Data);
+            
+            if (d3Data && (d3Data.id || d3Data.data)) {
+              const personId = d3Data.id || d3Data.data.id;
+              store.updateTree({tree_position: personId});
+            }
+          });
+        });
+      }, 300);
     });
     
-    // Initial render with full interactivity
-    store.updateTree({initial: true});
+    // Initial render with full interactivity and centering
+    store.updateTree({
+      initial: true,
+      tree_position: null, // Auto-center on first person
+      transition_time: 0    // No transition on initial load
+    });
   }).catch(err => {
     console.error('Error loading family data:', err);
   });

@@ -57,7 +57,7 @@
 <body>
   
   <!-- Khu vực chọn file và nút upload -->
-  <div style="padding: 20px; background: #222; text-align: center;">
+  <div style="padding: 20px; background: #222; text-align: center; position: relative; z-index: 10;">
     <!-- Nút chọn file giống với nút Load -->
     <button id="selectFileBtn" style="padding: 10px 20px; background: #007cba; color: white; border: none; cursor: pointer; margin-right: 10px;">
       Chọn File Excel
@@ -83,7 +83,8 @@
             background-position: center;
             background-repeat: no-repeat;
             color:#fff;
-            z-index: -1;">
+            z-index: 1;
+            pointer-events: auto;">
   </div>
 
   <!-- Simplified sidebar - hidden by default -->
